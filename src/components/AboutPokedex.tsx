@@ -152,13 +152,16 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
       <h2
         style={{
           color: titleColor,
-          fontSize: 'clamp(3rem, 5vw, 4.5rem)',
+          fontSize: 'clamp(1.5rem, 5vw, 4.5rem)',
           fontWeight: 900,
           textTransform: 'uppercase',
           textShadow: '4px 4px 0px #000000',
           marginBottom: '7vh',
           textAlign: 'center',
           transition: 'color 0.4s ease',
+          padding: '0 1rem',
+          wordBreak: 'break-word',
+          lineHeight: 1.3,
         }}
       >
         GUIDELINES/FAQs
