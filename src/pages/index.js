@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import Parallax from '@/components/Parallax.tsx';
 import PokemonLoader from '@/components/PokemonLoader.tsx';
-import KantoPokemonQuiz from '@/components/KantoPokemonQuiz.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
 import AboutCodeUncode from '@/components/AboutCodeUncode.tsx';
 import Timeline from '@/components/Timeline.tsx';
 import PrizesSection from '@/components/PrizesSection.tsx';
+import LiveRegi from '@/components/LiveRegi.tsx';
 import ProfessorOakIntro from '@/components/ProfessorOakIntro.tsx';
 import MusicPlayer from '@/components/MusicPlayer.tsx';
 import Footer from '@/components/Footer.tsx';
@@ -73,7 +73,8 @@ function Home() {
               <Timeline type={selectedType} />
               <AboutPokedex type={selectedType} />
               <PrizesSection type={selectedType} />
-              <KantoPokemonQuiz />
+              <LiveRegi type={selectedType} />
+
               <Footer type={selectedType} />
             </div>
           </div>

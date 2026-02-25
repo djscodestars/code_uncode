@@ -1,0 +1,856 @@
+/* ===== LIVEREGI SECTION ===== */
+.section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== THEME CARD VARIANTS ===== */
+.cardFire {
+    background: linear-gradient(135deg,
+            rgba(180, 30, 0, 0.55) 0%,
+            rgba(120, 20, 0, 0.65) 50%,
+            rgba(80, 10, 0, 0.75) 100%) !important;
+    border-color: rgba(255, 100, 20, 0.35) !important;
+    box-shadow: 0 0 40px rgba(255, 80, 0, 0.1), inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.cardFire:hover {
+    box-shadow: 0 20px 50px rgba(255, 80, 0, 0.25) !important;
+}
+
+.cardWater {
+    background: linear-gradient(135deg,
+            rgba(0, 50, 160, 0.55) 0%,
+            rgba(0, 30, 120, 0.65) 50%,
+            rgba(0, 10, 80, 0.75) 100%) !important;
+    border-color: rgba(30, 144, 255, 0.35) !important;
+    box-shadow: 0 0 40px rgba(0, 144, 255, 0.1), inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.cardWater:hover {
+    box-shadow: 0 20px 50px rgba(0, 144, 255, 0.25) !important;
+}
+
+.cardGrass {
+    background: linear-gradient(135deg,
+            rgba(10, 80, 10, 0.55) 0%,
+            rgba(5, 55, 5, 0.65) 50%,
+            rgba(0, 30, 0, 0.75) 100%) !important;
+    border-color: rgba(50, 200, 50, 0.35) !important;
+    box-shadow: 0 0 40px rgba(50, 200, 50, 0.08), inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.cardGrass:hover {
+    box-shadow: 0 20px 50px rgba(50, 200, 50, 0.2) !important;
+}
+
+/* Rotating background glow (matches StarterSelection) */
+/* .section::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.07) 0%, transparent 70%);
+    animation: bgRotate 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes bgRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+} */
+
+.sectionTitle {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0 auto 48px;
+    width: 100%;
+    /* text-shadow:
+        0 0 20px rgba(255, 204, 0, 0.8),
+        0 0 40px rgba(255, 204, 0, 0.5),
+        0 0 60px rgba(255, 204, 0, 0.3); */
+    text-shadow: 4px 4px 0px #000000;
+    position: relative;
+    z-index: 1;
+}
+
+/* @keyframes titleGlow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 204, 0, 0.5), 0 0 30px rgba(255, 204, 0, 0.3);
+    }
+
+    to {
+        text-shadow: 0 0 40px rgba(255, 204, 0, 0.9), 0 0 60px rgba(255, 204, 0, 0.6), 0 0 80px rgba(255, 204, 0, 0.3);
+    }
+} */
+
+/* ===== THREE COLUMN GRID ===== */
+.columnsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 28px;
+    width: 100%;
+    max-width: 1400px;
+    align-items: stretch;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== SHARED CARD BASE ===== */
+.card {
+    background: rgba(0, 0, 0, 0.75);
+    border: 3px solid #333;
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 22px;
+    padding: 3px;
+    background: linear-gradient(45deg, transparent, rgba(255, 204, 0, 0.3), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(255, 204, 0, 0.15);
+}
+
+/* ===== COLUMN 1 — LIVE REGISTRATIONS ===== */
+.regisCard {
+    gap: 20px;
+    min-height: 360px;
+}
+
+.regisIconRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.blueLight {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #51e1ed, #005a7d);
+    border: 3px solid #f5f5f5;
+    animation: blueBlink 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes blueBlink {
+    0% {
+        box-shadow: 0 0 4px 1px rgba(81, 225, 237, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 18px 8px rgba(81, 225, 237, 1), 0 0 35px 14px rgba(0, 180, 220, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 4px 1px rgba(81, 225, 237, 0.3);
+    }
+}
+
+.regisCardTitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: bold;
+}
+
+.regisScreenBorder {
+    background: #dedede;
+    border: 4px solid #333;
+    border-radius: 12px 12px 12px 32px;
+    padding: 16px;
+    width: 100%;
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.6), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.regisScreen {
+    background: #111;
+    border: 3px solid #444;
+    border-radius: 8px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 140px;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.regisLabel {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    color: #51ae5f;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: bold;
+}
+
+.regisCount {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #ffcc00;
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 0 40px rgba(255, 204, 0, 0.4);
+    letter-spacing: 0.05em;
+    animation: countPulse 3s ease-in-out infinite;
+}
+
+@keyframes countPulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 0 40px rgba(255, 204, 0, 0.4);
+    }
+
+    50% {
+        text-shadow: 0 0 35px rgba(255, 204, 0, 1), 0 0 70px rgba(255, 204, 0, 0.7);
+    }
+}
+
+.regisLoading {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.5rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.regisFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.regisFooterDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #c00d1c;
+    border: 2px solid #333;
+    animation: redBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes redBlink {
+
+    0%,
+    100% {
+        box-shadow: 0 0 4px rgba(238, 7, 7, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 12px 4px rgba(241, 8, 8, 0.95);
+    }
+}
+
+.speakerGrill {
+    width: 60px;
+    height: 20px;
+    background: repeating-linear-gradient(180deg,
+            #333 0, #333 2px,
+            transparent 2px, transparent 5px,
+            #333 5px, #333 7px);
+    border-radius: 3px;
+}
+
+.regisSubtext {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    animation: subtitleFade 2s ease-in-out infinite alternate;
+    text-align: center;
+}
+
+@keyframes subtitleFade {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 0.7;
+    }
+}
+
+/* ===== COLUMN 2 — COUNTDOWN ===== */
+.countdownCard {
+    gap: 28px;
+    min-height: 420px;
+    border-color: rgba(255, 204, 0, 0.3);
+    box-shadow: 0 0 40px rgba(255, 204, 0, 0.05), inset 0 0 60px rgba(0, 0, 0, 0.4);
+}
+
+.countdownHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.pokeballSpinner {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    animation: spin 3s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.5));
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.countdownTitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    text-align: center;
+}
+
+.countdownEventName {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 14px rgba(255, 204, 0, 0.6);
+    text-align: center;
+    font-weight: bold;
+}
+
+.countdownDate {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.2em;
+    text-align: center;
+}
+
+/* ── Single countdown box ── */
+.countdownBox {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    border: 2px solid rgba(255, 204, 0, 0.2);
+    border-radius: 16px;
+    padding: 22px 16px 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdownBox::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+    animation: shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Row that holds DD : HH : MM : SS */
+.countdownRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+/* Each number+label pair */
+.countdownChunk {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 52px;
+}
+
+.countdownNumber {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    color: #ffcc00;
+    line-height: 1;
+    text-shadow: 0 0 18px rgba(255, 204, 0, 0.75);
+    display: block;
+    text-align: center;
+}
+
+.countdownUnitLabel {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Colon separator */
+.countdownSep {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 900;
+    color: rgba(255, 204, 0, 0.5);
+    line-height: 1;
+    margin-bottom: 16px;
+    animation: colonPulse 1s ease-in-out infinite;
+    user-select: none;
+}
+
+@keyframes colonPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+.countdownLive {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.liveDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #51e1ed;
+    animation: blueBlink 1.5s ease-in-out infinite;
+}
+
+/* ===== COLUMN 3 — POKEMON QUIZ ===== */
+.quizCard {
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    min-height: 460px;
+}
+
+.quizInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px;
+    gap: 16px;
+    position: relative;
+}
+
+.quizHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 14px;
+}
+
+.quizProgress {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.quizScoreBadge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 6px 18px;
+    border-radius: 30px;
+}
+
+.quizScoreNum {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #51e1ed;
+    text-shadow: 0 0 10px rgba(81, 225, 237, 0.7);
+}
+
+.quizScoreLabel {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.quizPokemonWrap {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.quizPokemonImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    transition: filter 0.5s ease;
+}
+
+.quizPokemonGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 2s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.quizRingAnim {
+    position: absolute;
+    inset: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.quizSpinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #ffcc00;
+    border-radius: 50%;
+    animation: spinAnim 0.8s linear infinite;
+}
+
+@keyframes spinAnim {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.quizRevealName {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-align: center;
+    min-height: 1.6rem;
+}
+
+.quizRevealCorrect {
+    color: #51ae5f;
+    text-shadow: 0 0 12px rgba(81, 174, 95, 0.7);
+}
+
+.quizRevealWrong {
+    color: #ff4545;
+    text-shadow: 0 0 12px rgba(255, 69, 69, 0.7);
+}
+
+/* Input area */
+.quizForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.quizInputWrap {
+    position: relative;
+    width: 100%;
+}
+
+.quizGlow {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(90deg, #51e1ed, #ffcc00);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+    filter: blur(4px);
+}
+
+.quizInputWrap:focus-within .quizGlow {
+    opacity: 0.4;
+}
+
+.quizInput {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 14px 48px 14px 16px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+    box-sizing: border-box;
+}
+
+.quizInput::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+}
+
+.quizInput:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.quizInput.correct {
+    border-color: rgba(81, 174, 95, 0.6);
+    color: #51ae5f;
+    background: rgba(81, 174, 95, 0.08);
+}
+
+.quizInput.wrong {
+    border-color: rgba(255, 69, 69, 0.6);
+    color: #ff4545;
+    background: rgba(255, 69, 69, 0.08);
+}
+
+.quizStatusIcon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    z-index: 2;
+}
+
+.quizHint {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    animation: subtitleFade 2s ease-in-out infinite alternate;
+}
+
+/* Game Over Overlay */
+.gameOverOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    border-radius: 20px;
+    z-index: 50;
+}
+
+.gameOverTitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 30px rgba(255, 204, 0, 0.8);
+    animation: titleGlow 1.5s ease-in-out infinite alternate;
+}
+
+.gameOverScore {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.gameOverScoreNum {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5rem;
+    font-weight: 900;
+    color: #ffcc00;
+    text-shadow: 0 0 30px rgba(255, 204, 0, 0.7);
+    line-height: 1;
+}
+
+.gameOverScoreOf {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.gameOverBtn {
+    background: linear-gradient(135deg, #ffcc00, #ff8c00);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 40px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 24px rgba(255, 204, 0, 0.3);
+}
+
+.gameOverBtn:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 32px rgba(255, 204, 0, 0.5);
+}
+
+.gameOverBtn:active {
+    transform: scale(0.97);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+    .columnsGrid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .quizCard {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .columnsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 40px 16px;
+    }
+
+    .quizCard {
+        grid-column: unset;
+    }
+
+    .countdownGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
