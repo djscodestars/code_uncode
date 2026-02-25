@@ -6,10 +6,11 @@ import styles from './PokemonLoader.module.css';
 
 interface PokemonLoaderProps {
   onSelect: (type: "fire" | "water" | "grass") => void;
+  initialStage?: 'intro' | 'selection';
 }
 
-export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
-  const [stage, setStage] = useState<'intro' | 'selection'>('intro');
+export default function PokemonLoader({ onSelect, initialStage = 'intro' }: PokemonLoaderProps) {
+  const [stage, setStage] = useState<'intro' | 'selection'>(initialStage);
   const [currentMessageIdx, setCurrentMessageIdx] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);

@@ -1,4 +1,4 @@
-import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
+import { Camera, Color, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
 import { useEffect, useRef } from 'react';
 
 function debounce(func, wait) {
@@ -98,14 +98,15 @@ class Title {
         }
       `,
       uniforms: { tMap: { value: texture } },
-      transparent: true
+      transparent: true,
+      depthTest: false // Ensure text is visible
     });
     this.mesh = new Mesh(this.gl, { geometry, program });
     const aspect = width / height;
     const textHeightScaled = this.plane.scale.y * 0.15;
     const textWidthScaled = textHeightScaled * aspect;
     this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.05;
+    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.2; // Push text further down
     this.mesh.setParent(this.plane);
   }
 }
@@ -146,6 +147,10 @@ class Media {
     this.textColor = textColor;
     this.borderRadius = borderRadius;
     this.font = font;
+    
+    this.hover = 0; // State for hover scaling
+    this.targetHover = 0;
+    
     this.createShader();
     this.createMesh();
     this.createTitle();
@@ -167,11 +172,16 @@ class Media {
         uniform mat4 projectionMatrix;
         uniform float uTime;
         uniform float uSpeed;
+        uniform float uHover;
         varying vec2 vUv;
         void main() {
           vUv = uv;
           vec3 p = position;
-          // Reduced vibration: amplitude 1.5 -> 0.2
+          
+          // Hover scale effect
+          p.xy *= 1.0 + uHover * 0.15;
+          
+          // Reduced vibration
           p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.02 + uSpeed * 0.2);
           gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
         }
@@ -182,6 +192,8 @@ class Media {
         uniform vec2 uPlaneSizes;
         uniform sampler2D tMap;
         uniform float uBorderRadius;
+        uniform vec3 uGlowColor;
+        uniform float uHover;
         varying vec2 vUv;
         
         float roundedBoxSDF(vec2 p, vec2 b, float r) {
@@ -202,11 +214,16 @@ class Media {
           
           float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
           
+          // Glow effect
+          float glow = smoothstep(0.1, -0.4, d);
+          vec3 finalGlow = uGlowColor * glow * (0.4 + uHover * 0.6);
+          
           // Smooth antialiasing for edges
-          float edgeSmooth = 0.002;
+          float edgeSmooth = 0.02;
           float alpha = 1.0 - smoothstep(-edgeSmooth, edgeSmooth, d);
           
-          gl_FragColor = vec4(color.rgb, alpha);
+          vec3 finalColor = mix(finalGlow, color.rgb, alpha);
+          gl_FragColor = vec4(finalColor, max(alpha, glow * 0.3));
         }
       `,
       uniforms: {
@@ -215,7 +232,9 @@ class Media {
         uImageSizes: { value: [0, 0] },
         uSpeed: { value: 0 },
         uTime: { value: 100 * Math.random() },
-        uBorderRadius: { value: this.borderRadius }
+        uBorderRadius: { value: this.borderRadius },
+        uHover: { value: 0 },
+        uGlowColor: { value: new Color(this.textColor) }
       },
       transparent: true
     });
@@ -274,6 +293,10 @@ class Media {
     this.speed = scroll.current - scroll.last;
     this.program.uniforms.uTime.value += 0.04;
     this.program.uniforms.uSpeed.value = this.speed;
+    
+    // Smoothly animate hover state
+    this.hover = lerp(this.hover, this.targetHover, 0.1);
+    this.program.uniforms.uHover.value = this.hover;
 
     const planeOffset = this.plane.scale.x / 2;
     const viewportOffset = this.viewport.width / 2;
@@ -314,10 +337,9 @@ class Media {
 class App {
   medias = [];
   mediasImages = [];
-  raf = 0;
-
   isDown = false;
   start = 0;
+  mouse = { x: 0, y: 0 };
 
   constructor(
     container,
@@ -381,56 +403,6 @@ class App {
     borderRadius,
     font
   ) {
-    const defaultItems = [
-      {
-        image: `https://picsum.photos/seed/1/800/600?grayscale`,
-        text: 'Bridge'
-      },
-      {
-        image: `https://picsum.photos/seed/2/800/600?grayscale`,
-        text: 'Desk Setup'
-      },
-      {
-        image: `https://picsum.photos/seed/3/800/600?grayscale`,
-        text: 'Waterfall'
-      },
-      {
-        image: `https://picsum.photos/seed/4/800/600?grayscale`,
-        text: 'Strawberries'
-      },
-      {
-        image: `https://picsum.photos/seed/5/800/600?grayscale`,
-        text: 'Deep Diving'
-      },
-      {
-        image: `https://picsum.photos/seed/16/800/600?grayscale`,
-        text: 'Train Track'
-      },
-      {
-        image: `https://picsum.photos/seed/17/800/600?grayscale`,
-        text: 'Santorini'
-      },
-      {
-        image: `https://picsum.photos/seed/8/800/600?grayscale`,
-        text: 'Blurry Lights'
-      },
-      {
-        image: `https://picsum.photos/seed/9/800/600?grayscale`,
-        text: 'New York'
-      },
-      {
-        image: `https://picsum.photos/seed/10/800/600?grayscale`,
-        text: 'Good Boy'
-      },
-      {
-        image: `https://picsum.photos/seed/21/800/600?grayscale`,
-        text: 'Coastline'
-      },
-      {
-        image: `https://picsum.photos/seed/12/800/600?grayscale`,
-        text: 'Palm Trees'
-      }
-    ];
     const galleryItems = items && items.length ? items : defaultItems;
     this.mediasImages = galleryItems.concat(galleryItems);
     this.medias = this.mediasImages.map((data, index) => {
@@ -471,6 +443,14 @@ class App {
     this.onCheck();
   }
 
+  onMouseMove(e) {
+    const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const y = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+    this.mouse.x = (x / this.screen.width) * 2 - 1;
+    this.mouse.y = -(y / this.screen.height) * 2 + 1;
+  }
+
   onWheel(e) {
     // Disabled wheel scroll as per user request
     // const wheelEvent = e;
@@ -508,8 +488,17 @@ class App {
   update() {
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
+    
     if (this.medias) {
-      this.medias.forEach(media => media.update(this.scroll, direction));
+      this.medias.forEach(media => {
+        // Track hover based on mouse proximity to plane center in NDC
+        const mediaX = (media.plane.position.x / (this.viewport.width / 2));
+        const mediaY = (media.plane.position.y / (this.viewport.height / 2));
+        const dist = Math.sqrt(Math.pow(this.mouse.x - mediaX, 2) + Math.pow(this.mouse.y - mediaY, 2));
+        
+        media.targetHover = dist < 0.4 ? 1 : 0;
+        media.update(this.scroll, direction);
+      });
     }
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
@@ -521,15 +510,16 @@ class App {
     this.boundOnWheel = this.onWheel.bind(this);
     this.boundOnTouchDown = this.onTouchDown.bind(this);
     this.boundOnTouchMove = this.onTouchMove.bind(this);
+    this.boundOnMouseMove = this.onMouseMove.bind(this);
     this.boundOnTouchUp = this.onTouchUp.bind(this);
     window.addEventListener('resize', this.boundOnResize);
     window.addEventListener('mousewheel', this.boundOnWheel);
     window.addEventListener('wheel', this.boundOnWheel);
     window.addEventListener('mousedown', this.boundOnTouchDown);
-    window.addEventListener('mousemove', this.boundOnTouchMove);
+    window.addEventListener('mousemove', this.boundOnMouseMove);
     window.addEventListener('mouseup', this.boundOnTouchUp);
     window.addEventListener('touchstart', this.boundOnTouchDown);
-    window.addEventListener('touchmove', this.boundOnTouchMove);
+    window.addEventListener('touchmove', this.boundOnMouseMove);
     window.addEventListener('touchend', this.boundOnTouchUp);
   }
 
@@ -577,7 +567,7 @@ export default function CircularGallery({
   }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
   return (
     <div
-      className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing"
+      className="w-full h-full cursor-grab active:cursor-grabbing"
       ref={containerRef} />
   );
 }

@@ -1,0 +1,227 @@
+/* ===== PARALLAX LOADER ===== */
+.loaderOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.loaderOverlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ── Themed backgrounds matching starter selection colours ── */
+.loaderFire {
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200, 50, 0, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(120, 20, 0, 0.8) 0%, transparent 60%),
+        linear-gradient(180deg, #1a0500 0%, #330a00 50%, #1a0500 100%);
+}
+
+.loaderWater {
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0, 80, 200, 0.5) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(0, 20, 100, 0.85) 0%, transparent 60%),
+        linear-gradient(180deg, #000814 0%, #001a3d 50%, #000814 100%);
+}
+
+.loaderGrass {
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(20, 120, 10, 0.5) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(5, 60, 5, 0.85) 0%, transparent 60%),
+        linear-gradient(180deg, #010d01 0%, #032003 50%, #010d01 100%);
+}
+
+/* ── Pokéball Spinner — 120px ── */
+.pokeball {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    animation: spin 1.3s linear infinite;
+    filter: drop-shadow(0 0 28px var(--loader-glow));
+    flex-shrink: 0;
+}
+
+.pokeballTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--loader-accent);
+    border-radius: 120px 120px 0 0;
+    border: 5px solid #111;
+    border-bottom: none;
+    box-sizing: border-box;
+}
+
+.pokeballBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #fff;
+    border-radius: 0 0 120px 120px;
+    border: 5px solid #111;
+    border-top: none;
+    box-sizing: border-box;
+}
+
+.pokeballBand {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #111;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.pokeballCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    border: 6px solid #111;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: inset 0 0 0 5px var(--loader-accent);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Title block — sits slightly lower ── */
+.titleBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+/* Row of characters */
+.loaderTitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--loader-accent);
+    text-shadow: 0 0 20px var(--loader-glow), 4px 4px 0px #000;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Each character drops in with a staggered delay */
+.titleChar {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-14px);
+    animation: charDrop 0.45s ease forwards;
+}
+
+@keyframes charDrop {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loaderSub {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.38em;
+    text-align: center;
+    animation: subtlePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.65;
+    }
+}
+
+/* ── Progress Bar ── */
+.progressWrap {
+    width: clamp(220px, 42vw, 380px);
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--loader-accent), rgba(255, 255, 255, 0.85));
+    border-radius: 999px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--loader-glow);
+}
+
+/* ── Dots ── */
+.dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    50% {
+        transform: translateY(-7px);
+        background: var(--loader-accent);
+    }
+}

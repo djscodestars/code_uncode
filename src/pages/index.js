@@ -13,8 +13,9 @@ import MusicPlayer from '@/components/MusicPlayer.tsx';
 import Footer from '@/components/Footer.tsx';
 
 function Home() {
-  const [showIntro, setShowIntro] = useState(true); // Force intro to always show initially
+  const [showIntro, setShowIntro] = useState(true);
   const [selectedType, setSelectedType] = useState(null);
+  const [skipToSelection, setSkipToSelection] = useState(false);
 
   const handleTypeSelect = (type) => {
     setSelectedType(type);
@@ -49,9 +50,54 @@ function Home() {
 
   return (
     <>
-      {!selectedType && <PokemonLoader onSelect={handleTypeSelect} />}
+      {!selectedType && <PokemonLoader onSelect={(type) => { setSelectedType(type); setSkipToSelection(false); }} initialStage={skipToSelection ? 'selection' : 'intro'} />}
       {selectedType && (
         <>
+          {/* Sticky Back to Starter Selection Button */}
+          <button
+            onClick={() => { setSkipToSelection(true); setSelectedType(null); }}
+            style={{
+              position: 'fixed',
+              top: '18px',
+              right: '20px',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '10px 18px',
+              background: 'rgba(15, 15, 25, 0.75)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: `1.5px solid ${selectedType === 'fire' ? 'rgba(255, 100, 50, 0.6)' :
+                selectedType === 'water' ? 'rgba(60, 160, 255, 0.6)' :
+                  'rgba(80, 200, 100, 0.6)'
+                }`,
+              borderRadius: '50px',
+              color: '#fff',
+              fontSize: '13px',
+              fontWeight: '600',
+              fontFamily: 'Inter, Outfit, sans-serif',
+              letterSpacing: '0.4px',
+              cursor: 'pointer',
+              boxShadow: `0 4px 20px rgba(0,0,0,0.35), 0 0 12px ${selectedType === 'fire' ? 'rgba(255, 100, 50, 0.2)' :
+                selectedType === 'water' ? 'rgba(60, 160, 255, 0.2)' :
+                  'rgba(80, 200, 100, 0.2)'
+                }`,
+              transition: 'all 0.25s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'rgba(30, 30, 45, 0.92)';
+              e.currentTarget.style.transform = 'scale(1.04)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'rgba(15, 15, 25, 0.75)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            <span style={{ fontSize: '15px' }}>←</span>
+            <span>Starter Selection</span>
+          </button>
+
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
           <Parallax type={selectedType} />
           {/* Continuous overlay wrapper for all sections after hero */}
@@ -75,7 +121,7 @@ function Home() {
               <PrizesSection type={selectedType} />
               <LiveRegi type={selectedType} />
 
-              <div style={{ marginTop: '80px' }}>
+              <div style={{ marginTop: '160px' }}>
                 <Footer type={selectedType} />
               </div>
             </div>

@@ -39,9 +39,9 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
         { image: '/gallery/finals_awards-min.jpg', text: 'Finals Awards' },
         { image: '/gallery/finals_dhyanesh_speech-min.jpg', text: 'Keynote Speech' },
         { image: '/gallery/finals_feli-min.jpg', text: 'Felicitation' },
-        { image: '/gallery/finals_hall-min.jpg', text: 'The Hall' },
+        { image: '/gallery/finals_hall-min.jpg', text: 'The Team' },
         { image: '/gallery/finals_lab1-min.jpg', text: 'Coding Lab' },
-        { image: '/gallery/regionals_awards-min.jpg', text: 'Regional Awards' },
+        { image: '/gallery/regionals_awards-min.jpg', text: 'Awards' },
         { image: '/gallery/regionals_winners-min.jpg', text: 'Regional Winners' },
     ];
 
@@ -50,7 +50,7 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
             <h1 className={`${styles.title} ${getThemeClass()}`}>ABOUT CODE UNCODE 2025</h1>
             <p className={styles.description}>
                 Code UnCode is India&apos;s Premier ICPC-Style Competition involving multiple rounds of intense algorithmic challenges.<br />
-                Join thousands of participants in a battle of logic, speed, and precision to claim the championship.
+                Join thousands of participants in a battle of logic and precision to claim the championship in a battle of navigating through time and space complexities.
             </p>
 
             <div className={styles.metricsGrid}>
@@ -69,12 +69,15 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
             </div>
 
             <div className={styles.galleryContainer}>
-                <div className={styles.pikachuContainer}>
-                    <img src="/footer/jigglypuff.png" alt="Jigglypuff" className={styles.pikachuImage} />
+                <div className={styles.legendLeft}>
+                    <img src="/footer/dialga.png" alt="Dialga" className={styles.legendImage} />
                 </div>
                 <Link href="/gallery">
-                    <CircularGallery items={galleryItems} bend={3} textColor={getThemeColor()} borderRadius={0.05} font="bold 48px Figtree" />
+                    <CircularGallery items={galleryItems} bend={3} textColor={getThemeColor()} borderRadius={0.05} font={`bold 72px 'Courier New', Courier, monospace`} />
                 </Link>
+                <div className={styles.legendRight}>
+                    <img src="/footer/palkia.png" alt="Palkia" className={styles.legendImage} />
+                </div>
             </div>
         </div>
     );

@@ -5,8 +5,6 @@
     position: relative;
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
-    border-top: 4px solid #F7C630;
-    /* Pokemon Yellow border */
     z-index: 10;
 }
 

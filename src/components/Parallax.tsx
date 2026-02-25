@@ -1,18 +1,21 @@
 "use client";
 
-import { useRef, useLayoutEffect, useMemo } from "react";
+import { useRef, useLayoutEffect, useMemo, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import fireStyles from "./Parallax.module.css";
 import waterStyles from "./ParallaxWater.module.css";
 import grassStyles from "./ParallaxGrass.module.css";
 import MusicPlayer from "./MusicPlayer";
+import ParallaxLoader from "./ParallaxLoader";
 
 interface ParallaxProps {
   type: "fire" | "water" | "grass";
 }
 
 export default function Parallax({ type }: ParallaxProps) {
+  const [isReady, setIsReady] = useState(false);
+
   // Merge styles based on type
   const styles = useMemo(() => {
     if (type === "water") {
@@ -93,56 +96,65 @@ export default function Parallax({ type }: ParallaxProps) {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <>
+      <ParallaxLoader type={type} onReady={() => setIsReady(true)} />
       <div
-        ref={parallaxOuterRef}
-        className={styles.parallaxContainer}
+        className={styles.wrapper}
+        style={{
+          opacity: isReady ? 1 : 0,
+          transition: 'opacity 0.5s ease',
+        }}
       >
-        <div ref={mountains} className={`${styles.layer} ${styles.mountainLayer || ""}`}>
-          <img src={`/${images.folder}/${images.mountains}`} alt="mountains" />
-        </div>
-        <div ref={trees} className={`${styles.layer} ${styles.treeLayer}`}>
-          <img src={`/${images.folder}/${images.trees}`} alt="trees" />
-        </div>
-
-        <div ref={textContent} className={styles.copy}>
-          <img className={styles.heroLogo} src={`/${images.folder}/${images.logo}`} alt="Logo" />
-          <h2 className={styles.heroSubtitle}>India&apos;s Premier ICPC-Style Competition</h2>
-          <p className={styles.heroDescription}>
-            With 1,600+ participants from 370+ institutes in 2025, Code UnCode 2026 is going pan-India!
-            Regional qualifiers across major cities will lead to an electrifying grand finale in Mumbai.
-          </p>
-        </div>
-
-        <img ref={hoOh} src={`/${images.folder}/${images.bird1}`} className={styles.hoOh} alt={type === "fire" ? "Ho-Oh" : type === "water" ? "Lugia" : "Rayquaza"} />
-        <img ref={moltres} src={`/${images.folder}/${images.bird2}`} className={styles.moltres} alt={type === "fire" ? "Moltres" : type === "water" ? "Kyogre" : "Celebi"} />
-
-
         <div
-          ref={mask}
-          className={styles.fireMaskLayer}
-          style={{ backgroundImage: `url(/${images.folder}/${images.mask})` }}
+          ref={parallaxOuterRef}
+          className={styles.parallaxContainer}
         >
-          <div className={styles.marqueeContainer}>
-            <h3 className={styles.marqueeTitle}>Our Hosting Partners</h3>
-            <div className={styles.marqueeContent}>
-              {[...Array(6)].map((_, index) => (
-                <div key={index} className={styles.marqueeTrack}>
-                  <img src="/logos/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
-                  <img src="/logos/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
-                  <img src="/logos/sdc.png" alt="SDC" className={styles.partnerLogo} />
-                  <img src="/logos/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
-                </div>
-              ))}
+          <div ref={mountains} className={`${styles.layer} ${styles.mountainLayer || ""}`}>
+            <img src={`/${images.folder}/${images.mountains}`} alt="mountains" />
+          </div>
+          <div ref={trees} className={`${styles.layer} ${styles.treeLayer}`}>
+            <img src={`/${images.folder}/${images.trees}`} alt="trees" />
+          </div>
+
+          <div ref={textContent} className={styles.copy}>
+            <img className={styles.heroLogo} src={`/${images.folder}/${images.logo}`} alt="Logo" />
+            <h2 className={styles.heroSubtitle}>India&apos;s Premier ICPC-Style Competition</h2>
+            <p className={styles.heroDescription}>
+              With 1,600+ participants from 370+ institutes in 2025, Code UnCode 2026 is going pan-India!
+              Regional qualifiers across major cities will lead to an electrifying grand finale in Mumbai.
+            </p>
+          </div>
+
+          <img ref={hoOh} src={`/${images.folder}/${images.bird1}`} className={styles.hoOh} alt={type === "fire" ? "Ho-Oh" : type === "water" ? "Lugia" : "Rayquaza"} />
+          <img ref={moltres} src={`/${images.folder}/${images.bird2}`} className={styles.moltres} alt={type === "fire" ? "Moltres" : type === "water" ? "Kyogre" : "Celebi"} />
+
+
+          <div
+            ref={mask}
+            className={styles.fireMaskLayer}
+            style={{ backgroundImage: `url(/${images.folder}/${images.mask})` }}
+          >
+            <div className={styles.marqueeContainer}>
+              <h3 className={styles.marqueeTitle}>Our Hosting Partners</h3>
+              <div className={styles.marqueeContent}>
+                {[...Array(6)].map((_, index) => (
+                  <div key={index} className={styles.marqueeTrack}>
+                    <img src="/logos/csispit.png" alt="CSI SPIT" className={styles.partnerLogo} />
+                    <img src="/logos/codestars.png" alt="CodeStars" className={styles.partnerLogo} />
+                    <img src="/logos/sdc.png" alt="SDC" className={styles.partnerLogo} />
+                    <img src="/logos/ieeespit.png" alt="IEEE SPIT" className={styles.partnerLogo} />
+                  </div>
+                ))}
+              </div>
             </div>
+          </div>
+
+          <div ref={foreground} className={`${styles.layer} ${styles.foregroundLayer}`}>
+            <img src={`/${images.folder}/${images.foreground}`} alt="foreground" />
           </div>
         </div>
 
-        <div ref={foreground} className={`${styles.layer} ${styles.foregroundLayer}`}>
-          <img src={`/${images.folder}/${images.foreground}`} alt="foreground" />
-        </div>
       </div>
-
-    </div>
+    </>
   );
 }
