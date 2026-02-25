@@ -83,6 +83,19 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
               <img src="/loader/background.png" alt="Intro Background" className={styles.bgImage} />
             </div>
 
+            <motion.button
+              type="button"
+              className={styles.skipButton}
+              onClick={() => setStage('selection')}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.2 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className={styles.skipText}>Skip Intro</span>
+            </motion.button>
+
             {/* Pokedex-style container */}
             <div className={styles.pokedexContainer}>
               {/* Red top border accent */}
@@ -120,9 +133,7 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
             transition={{ duration: 0.5 }}
           >
             {/* Background */}
-            <div className={styles.selectionBackground}>
-              <img src="/loader/gamebg.png" alt="Game Background" className={styles.bgImage} />
-            </div>
+            <div className={styles.selectionBackground} />
 
             <motion.div
               className={styles.selectionPanel}
@@ -138,17 +149,14 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     initial={{ opacity: 0, scale: 0.88 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45, delay: 0.25 }}
-                    whileHover={{ scale: 1.03, y: -4 }}
-                    whileTap={{ scale: 0.96 }}
+                    whileHover={{ x: 18 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
                       <img src="/loader/redbg.png" alt="Fire Background" />
                     </div>
                     <div className={styles.pokemonImage}>
                       <img src="/loader/redpokemon.png" alt="Charmander" />
-                    </div>
-                    <div className={styles.pokeball}>
-                      <img src="/loader/ball.png" alt="Pokeball" />
                     </div>
                   </motion.button>
 
@@ -158,17 +166,14 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     initial={{ opacity: 0, scale: 0.88 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45, delay: 0.32 }}
-                    whileHover={{ scale: 1.03, y: -4 }}
-                    whileTap={{ scale: 0.96 }}
+                    whileHover={{ x: 12 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
                       <img src="/loader/bluebg.png" alt="Water Background" />
                     </div>
                     <div className={styles.pokemonImage}>
                       <img src="/loader/bluepokemon.png" alt="Squirtle" />
-                    </div>
-                    <div className={styles.pokeball}>
-                      <img src="/loader/ball.png" alt="Pokeball" />
                     </div>
                   </motion.button>
 
@@ -178,8 +183,8 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     initial={{ opacity: 0, scale: 0.88 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45, delay: 0.39 }}
-                    whileHover={{ scale: 1.03, y: -4 }}
-                    whileTap={{ scale: 0.96 }}
+                    whileHover={{ x: 6 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
                       <img src="/loader/greenbg.png" alt="Grass Background" />
@@ -187,21 +192,8 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     <div className={styles.pokemonImage}>
                       <img src="/loader/greenpokemon.png" alt="Bulbasaur" />
                     </div>
-                    <div className={styles.pokeball}>
-                      <img src="/loader/ball.png" alt="Pokeball" />
-                    </div>
                   </motion.button>
                 </div>
-
-                <motion.div
-                  className={styles.oakColumn}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.45, delay: 0.32 }}
-                >
-                  <img src="/loader/professoroak.png" alt="Professor Oak" className={styles.selectionOak} />
-                  <img src="/loader/standing.png" alt="Oak Platform" className={styles.selectionOakPlatform} />
-                </motion.div>
               </div>
             </motion.div>
           </motion.div>

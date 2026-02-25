@@ -4,10 +4,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('/loader/gamebg.png') center center;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
     display: flex;
     align-items: center;
     justify-content: center;
