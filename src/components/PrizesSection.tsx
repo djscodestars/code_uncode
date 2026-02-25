@@ -58,7 +58,6 @@ const PrizesSection: React.FC<PrizesSectionProps> = ({ type = 'fire' }) => {
           ))}
         </div>
 
-        <div className={styles.podium} aria-hidden="true" />
       </div>
     </section>
   );

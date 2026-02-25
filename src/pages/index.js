@@ -75,7 +75,9 @@ function Home() {
               <PrizesSection type={selectedType} />
               <LiveRegi type={selectedType} />
 
-              <Footer type={selectedType} />
+              <div style={{ marginTop: '80px' }}>
+                <Footer type={selectedType} />
+              </div>
             </div>
           </div>
         </>

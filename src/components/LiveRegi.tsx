@@ -51,6 +51,16 @@ export default function LiveRegi({ type }: Props) {
 
     const themeCard = THEME_CARD_CLASS[type] ?? "";
 
+    // Exact same color logic as PrizesSection
+    const getTitleColor = () => {
+        switch (type) {
+            case 'water': return '#00ffff';
+            case 'grass': return '#76ff03';
+            case 'fire': default: return '#ffcc00';
+        }
+    };
+    const titleColor = getTitleColor();
+
     // ── Col 1: Live Registrations ──────────────────────────────────────────────
     const [regisCount, setRegisCount] = useState<number | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -135,7 +145,13 @@ export default function LiveRegi({ type }: Props) {
     // ── Render ─────────────────────────────────────────────────────────────────
     return (
         <section>
-            <h2 className={styles.sectionTitle}>— Live Arena —</h2>
+            <h2
+                className={styles.sectionTitle}
+                style={{
+                    color: titleColor,
+                    textShadow: '4px 4px 0px #000000',
+                }}
+            >— Live Arena —</h2>
 
             <div className={styles.columnsGrid}>
 
@@ -276,8 +292,8 @@ export default function LiveRegi({ type }: Props) {
 
                         {/* Reveal name */}
                         <div className={`${styles.quizRevealName} ${isRevealed
-                                ? isCorrect ? styles.quizRevealCorrect : styles.quizRevealWrong
-                                : ""
+                            ? isCorrect ? styles.quizRevealCorrect : styles.quizRevealWrong
+                            : ""
                             }`}>
                             {isRevealed && pokemon
                                 ? pokemon.name.replace(/-/g, " ")
@@ -296,8 +312,8 @@ export default function LiveRegi({ type }: Props) {
                                     placeholder={isRevealed ? "" : "WHO'S THAT POKÉMON?"}
                                     autoComplete="off"
                                     className={`${styles.quizInput} ${isRevealed
-                                            ? isCorrect ? styles.correct : styles.wrong
-                                            : ""
+                                        ? isCorrect ? styles.correct : styles.wrong
+                                        : ""
                                         }`}
                                 />
                                 {isRevealed && (

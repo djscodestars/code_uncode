@@ -320,7 +320,6 @@
 .hinge {
   width: 52px;
   height: 490px;
-  /* shorter so bottom aligns with the panels */
   background: linear-gradient(to right,
       #8b0000 0%,
       #a01022 25%,

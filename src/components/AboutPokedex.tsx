@@ -81,8 +81,8 @@ const funFacts = [
 
 const titleColors: Record<string, string> = {
   fire: '#ffcc00',
-  water: '#1e90ff',
-  grass: '#32cd32',
+  water: '#00ffff',
+  grass: '#76ff03',
 };
 
 type ScreenMode = null | { type: 'faq'; index: number } | { type: 'guidelines' } | { type: 'fact'; text: string };
@@ -326,22 +326,15 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    border: '2px solid #ffffff',
                     color: '#ffffff',
-                    fontFamily: "'Courier New', Courier, monospace",
                     fontWeight: 'bold',
-                    fontSize: '10px',
+                    fontSize: '18px',
                     lineHeight: 1,
                     pointerEvents: 'none',
-                    background: activeIndex === i ? 'rgba(255,255,255,0.25)' : 'transparent',
                     transition: 'background 0.15s',
                   }}
                 >
-                  {i + 1}
+                  {`Q${i + 1}`}
                 </span>
               </div>
             ))}

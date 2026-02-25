@@ -21,14 +21,31 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                 ? '/footer/pokestop_green.png'
                 : '/footer/pokestop.png';
 
+    const starterGif =
+        type === 'fire'
+            ? '/footer/charizard.gif'
+            : type === 'water'
+                ? '/footer/blastoise.gif'
+                : '/footer/venusaur.gif';
+
+    const starterAlt =
+        type === 'fire' ? 'Charizard' : type === 'water' ? 'Blastoise' : 'Venusaur';
+
+    const contactGlowColor =
+        type === 'fire'
+            ? '#ff4500'
+            : type === 'water'
+                ? '#00bfff'
+                : '#39ff14';
+
     return (
         <footer className={`${styles.footer} ${themeClass}`}>
             <div className={styles.contentWrapper}>
 
-                {/* Left Section: Snorlax & Socials */}
+                {/* Left Section: Starter Pokémon & Socials */}
                 <div className={styles.leftSection}>
                     <div className={styles.snorlaxContainer}>
-                        <img src="/footer/snorlax.gif" alt="Snorlax" className={styles.snorlax} />
+                        <img src={starterGif} alt={starterAlt} className={styles.snorlax} />
                     </div>
                     <div className={styles.socials}>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
@@ -46,7 +63,12 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
 
                 {/* Center Section: Contact Info */}
                 <div className={styles.centerSection}>
-                    <h2 className={styles.contactTitle}>Contact Us</h2>
+                    <h2
+                        className={styles.contactTitle}
+                        style={{
+                            textShadow: `0 0 10px ${contactGlowColor}, 0 0 20px ${contactGlowColor}, 0 0 30px ${contactGlowColor}`,
+                        }}
+                    >Contact Us</h2>
                     <a href="mailto:djscodestars@gmail.com" className={styles.email}>djscodestars@gmail.com</a>
 
                     <div className={styles.contactList}>

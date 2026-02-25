@@ -77,19 +77,15 @@
 .sectionTitle {
     font-size: clamp(3rem, 5vw, 4.5rem);
     font-weight: 900;
-    color: #ffd700;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
     margin: 0 auto 48px;
     width: 100%;
-    /* text-shadow:
-        0 0 20px rgba(255, 204, 0, 0.8),
-        0 0 40px rgba(255, 204, 0, 0.5),
-        0 0 60px rgba(255, 204, 0, 0.3); */
     text-shadow: 4px 4px 0px #000000;
     position: relative;
     z-index: 1;
+    transition: color 0.4s ease;
 }
 
 /* @keyframes titleGlow {

@@ -83,7 +83,7 @@ export default function MusicPlayer({ type, onReset }: MusicPlayerProps) {
     };
 
     return (
-        <div className="fixed bottom-4 right-4 md:top-6 md:left-6 md:bottom-auto z-50 font-sans max-w-[calc(100vw-2rem)] flex flex-col md:flex-row items-end md:items-start gap-3">
+        <div className="fixed bottom-6 right-6 md:top-8 md:left-8 md:bottom-auto z-50 font-sans max-w-[calc(100vw-3rem)] flex flex-col md:flex-row items-end md:items-start gap-3">
             {/* Starter Reset Button (Only visible on Desktop/Tablet if space permits, or stack on mobile) */}
             <button
                 onClick={onReset}
