@@ -226,7 +226,7 @@
 
 .cardsContainer {
     display: flex;
-    gap: clamp(10px, 1.2vw, 16px);
+    gap: 0;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -237,11 +237,11 @@
 /* Starter Card Base */
 .starterCard {
     position: relative;
-    width: clamp(140px, 16vw, 220px);
-    flex: 0 0 clamp(140px, 16vw, 220px);
-    height: clamp(260px, 64vh, 560px);
+    width: 33.3333%;
+    flex: 1 1 33.3333%;
+    height: 100%;
     border: none;
-    border-radius: 32px;
+    border-radius: 0;
     cursor: pointer;
     overflow: hidden;
     background: transparent;
@@ -250,18 +250,19 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0;
-    transition: all 0.3s ease;
+    transition: flex-basis 0.45s ease, width 0.45s ease, transform 0.45s ease;
     box-shadow: none;
 }
 
 .cardsContainer:hover .starterCard {
     width: 15%;
-    flex-basis: 15%;
+    flex: 0 0 15%;
 }
 
 .cardsContainer:hover .starterCard:hover {
     width: 70%;
-    flex-basis: 70%;
+    flex: 0 0 70%;
+    transform: translateX(10px);
 }
 
 .starterCard:focus {
@@ -274,7 +275,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    border-radius: 32px;
+    border-radius: 0;
     z-index: 1;
 }
 
@@ -287,12 +288,17 @@
 .pokemonImage {
     position: relative;
     z-index: 3;
-    width: clamp(148px, 15vw, 360px);
-    height: clamp(148px, 15vw, 360px);
+    width: clamp(150px, 16vw, 340px);
+    height: clamp(150px, 16vw, 340px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: clamp(26px, 6vh, 82px);
+    margin-top: 0;
+    margin-bottom: 0;
+    align-self: center;
+    justify-self: center;
+    margin-inline: auto;
+    margin-block: auto;
 }
 
 .pokemonImage img {
@@ -300,9 +306,14 @@
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-    transform: scale(1.95);
+    transform: scale(1.7);
     transform-origin: center;
-    image-rendering: pixelated; 
+    image-rendering: pixelated;
+    transition: transform 0.45s ease;
+}
+
+.starterCard:hover .pokemonImage img {
+    transform: scale(2.15);
 }
 
 .pokeball {
@@ -397,48 +408,44 @@
         width: 100vw;
         height: 100vh;
         min-height: 100vh;
-        padding: 14px;
+        padding: 0;
     }
 
     .selectionLayout {
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 14px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0;
     }
 
     .cardsContainer {
         width: 100%;
         justify-content: center;
-        height: auto;
+        height: 100%;
     }
 
     .starterCard {
-        width: clamp(94px, 27vw, 136px);
-        flex: 0 0 clamp(94px, 27vw, 136px);
-        height: clamp(220px, 48vh, 350px);
-        border-radius: 24px;
+        width: 33.3333%;
+        flex: 1 1 33.3333%;
+        height: 100%;
+        border-radius: 0;
         padding: 0;
     }
 
     .cardsContainer:hover .starterCard,
     .cardsContainer:hover .starterCard:hover {
-        width: clamp(94px, 27vw, 136px);
-        flex-basis: clamp(94px, 27vw, 136px);
+        width: 33.3333%;
+        flex: 1 1 33.3333%;
+        transform: none;
     }
 
     .cardBackground {
-        border-radius: 24px;
+        border-radius: 0;
     }
 
     .pokemonImage {
-        width: clamp(114px, 34vw, 166px);
-        height: clamp(114px, 34vw, 166px);
-        margin-top: clamp(14px, 3vh, 28px);
-    }
-
-    .pokeball {
-        width: clamp(42px, 9vw, 56px);
-        height: clamp(42px, 9vw, 56px);
+        width: clamp(104px, 30vw, 170px);
+        height: clamp(104px, 30vw, 170px);
+        margin: auto;
     }
 
 }
@@ -457,29 +464,30 @@
     }
 
     .cardsContainer {
-        gap: 8px;
+        gap: 0;
     }
 
     .starterCard {
-        width: clamp(82px, 28vw, 106px);
-        flex: 0 0 clamp(82px, 28vw, 106px);
-        height: clamp(180px, 42vh, 260px);
-        border-radius: 18px;
+        width: 33.3333%;
+        flex: 1 1 33.3333%;
+        height: 100%;
+        border-radius: 0;
     }
 
     .cardsContainer:hover .starterCard,
     .cardsContainer:hover .starterCard:hover {
-        width: clamp(82px, 28vw, 106px);
-        flex-basis: clamp(82px, 28vw, 106px);
+        width: 33.3333%;
+        flex: 1 1 33.3333%;
+        transform: none;
     }
 
     .cardBackground {
-        border-radius: 18px;
+        border-radius: 0;
     }
 
     .pokemonImage {
-        width: clamp(88px, 34vw, 116px);
-        height: clamp(88px, 34vw, 116px);
+        width: clamp(86px, 30vw, 118px);
+        height: clamp(86px, 30vw, 118px);
     }
 
 }

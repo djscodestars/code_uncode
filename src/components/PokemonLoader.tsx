@@ -149,11 +149,10 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     initial={{ opacity: 0, scale: 0.88 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45, delay: 0.25 }}
-                    whileHover={{ x: 18 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loader/redbg.png" alt="Fire Background" />
+                      <img src="/loading/red.png" alt="Fire Background" />
                     </div>
                     <div className={styles.pokemonImage}>
                       <img src="/loader/redpokemon.png" alt="Charmander" />
@@ -166,11 +165,10 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     initial={{ opacity: 0, scale: 0.88 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45, delay: 0.32 }}
-                    whileHover={{ x: 12 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loader/bluebg.png" alt="Water Background" />
+                      <img src="/loading/blue.jpg" alt="Water Background" />
                     </div>
                     <div className={styles.pokemonImage}>
                       <img src="/loader/bluepokemon.png" alt="Squirtle" />
@@ -183,11 +181,10 @@ export default function PokemonLoader({ onSelect }: PokemonLoaderProps) {
                     initial={{ opacity: 0, scale: 0.88 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.45, delay: 0.39 }}
-                    whileHover={{ x: 6 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loader/greenbg.png" alt="Grass Background" />
+                      <img src="/loading/green.png" alt="Grass Background" />
                     </div>
                     <div className={styles.pokemonImage}>
                       <img src="/loader/greenpokemon.png" alt="Bulbasaur" />
