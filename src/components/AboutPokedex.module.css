@@ -686,131 +686,7 @@
     transform: scale(1.2);
   }
 
-  /* Mobile Modal Overlay */
-  .mobileModalOverlay {
-    display: none;
-  }
 
-  @media (max-width: 768px) {
-    .mobileModalOverlay {
-      display: flex;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 20px;
-    }
-  }
-
-  .mobileModal {
-    background: #c00d1c;
-    border: 5px solid #333;
-    border-radius: 15px;
-    padding: 20px;
-    max-width: 340px;
-    width: 100%;
-    max-height: 70vh;
-    overflow-y: auto;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
-    animation: slideUp 0.3s ease-out;
-  }
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(100px);
-      opacity: 0;
-    }
-
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  .modalHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #333;
-  }
-
-  .modalHeader h3 {
-    color: #fff;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 16px;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .closeButton {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-  }
-
-  .closeButton:hover {
-    transform: scale(1.2);
-  }
-
-  .modalStats {
-    background: #222;
-    border: 3px solid #333;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 15px;
-    color: #51ae5f;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
-  }
-
-  .modalStatLine {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid #444;
-  }
-
-  .modalStatLine:last-child {
-    border-bottom: none;
-  }
-
-  .modalLabel {
-    font-weight: bold;
-    color: #51ae5f;
-  }
-
-  .modalValue {
-    text-align: right;
-    color: #51ae5f;
-  }
-
-  .modalDescription {
-    background: #222;
-    color: #f5f5f5;
-    padding: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 12px;
-    border-radius: 8px;
-    border: 3px solid #333;
-    line-height: 1.4;
-  }
 }
 
 @media (max-width: 480px) {
@@ -854,19 +730,7 @@
     font-size: 16px;
   }
 
-  .mobileModal {
-    max-width: 95vw;
-    padding: 15px;
-    border-radius: 12px;
-  }
-
-  .modalHeader h3 {
-    font-size: 14px;
-  }
-
-  .modalStats,
-  .modalDescription {
-    font-size: 11px;
-    padding: 10px;
+  .infoButton {
+    font-size: 16px;
   }
 }
