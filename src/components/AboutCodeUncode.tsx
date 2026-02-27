@@ -72,9 +72,7 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
                 <div className={styles.legendLeft}>
                     <img src="/footer/dialga.png" alt="Dialga" className={styles.legendImage} />
                 </div>
-                <Link href="/gallery">
-                    <CircularGallery items={galleryItems} bend={3} textColor={getThemeColor()} borderRadius={0.05} font={`bold 72px 'Courier New', Courier, monospace`} />
-                </Link>
+                <CircularGallery items={galleryItems} bend={3} textColor={getThemeColor()} borderRadius={0.05} font={`bold 72px 'Courier New', Courier, monospace`} />
                 <div className={styles.legendRight}>
                     <img src="/footer/palkia.png" alt="Palkia" className={styles.legendImage} />
                 </div>
