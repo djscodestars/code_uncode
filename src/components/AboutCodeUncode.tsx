@@ -43,6 +43,7 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
         { image: '/gallery/finals_lab1-min.jpg', text: 'Coding Lab' },
         { image: '/gallery/regionals_awards-min.jpg', text: 'Awards' },
         { image: '/gallery/regionals_winners-min.jpg', text: 'Regional Winners' },
+        { image: '/gallery/the-team.jpg', text: 'Core Team' },
     ];
 
     return (
@@ -50,7 +51,7 @@ const AboutCodeUncode: React.FC<AboutCodeUncodeProps> = ({ type }) => {
             <h1 className={`${styles.title} ${getThemeClass()}`}>ABOUT CODE UNCODE 2025</h1>
             <p className={styles.description}>
                 Code UnCode is India&apos;s Premier ICPC-Style Competition involving multiple rounds of intense algorithmic challenges.<br />
-                Join thousands of participants in a battle of logic and precision to claim the championship in a battle of navigating through time and space complexities.
+                Join thousands of participants in a battle of logic and precision to claim the championship in a battle of navigating through <span style={{ color: 'rgba(103, 146, 220, 1)' }}>time</span> and <span style={{ color: '#ac65a9ff' }}>space</span> complexities. 
             </p>
 
             <div className={styles.metricsGrid}>

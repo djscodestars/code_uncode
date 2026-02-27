@@ -178,8 +178,7 @@ class Media {
           vUv = uv;
           vec3 p = position;
           
-          // Hover scale effect
-          p.xy *= 1.0 + uHover * 0.35;
+          // Hover scale effect removed completely
           
           // Reduced vibration
           p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.02 + uSpeed * 0.2);
@@ -356,7 +355,7 @@ class App {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
-    this.autoScrollSpeed = 0.5; // Auto-scroll velocity
+    this.autoScrollSpeed = 0.08; // Auto-scroll velocity greatly reduced
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
     this.createRenderer();
@@ -501,11 +500,11 @@ class App {
         const mediaY = (media.plane.position.y / (this.viewport.height / 2));
         const dist = Math.sqrt(Math.pow(this.mouse.x - mediaX, 2) + Math.pow(this.mouse.y - mediaY, 2));
         
-        media.targetHover = dist < 0.4 ? 1 : 0;
+        media.targetHover = dist < 0.6 ? 1 : 0; // Keeping hover state for the scrolling slowdown, but visual size increase is gone.
         
         // Stop auto scroll when hovering over an item
         if (media.targetHover > 0) {
-          const hoverSlowdown = 0.8;
+          const hoverSlowdown = 0.5;
           if (!this.isDown) {
              this.scroll.target -= this.autoScrollSpeed * hoverSlowdown; 
           }
