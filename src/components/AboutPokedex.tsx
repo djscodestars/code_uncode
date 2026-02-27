@@ -29,12 +29,12 @@ const faqs = [
   {
     question: "Q5 : How many regionals can I register for?",
     answer:
-      "Each participant can register for a maximum of 2 Regional rounds. Regionals will be held offline at Somaiya, SPIT, and DJ Sanghvi from 19th-21st Feb.",
+      "Each participant can register for a maximum of 2 Regional rounds. Regionals will be held offline at COEP, SPIT, and DJ Sanghvi from 19th-21st Feb.",
   },
   {
     question: "Q6 : What are the rounds?",
     answer:
-      "Round 1 — Prelims (Online, 16th Feb). Round 2 — Regionals (Offline, 19-21 Feb at Somaiya, SPIT, DJ Sanghvi). Round 3 — Finals (23rd Feb at DJ Sanghvi, Mumbai).",
+      "Round 1 — Prelims (Online, 16th Feb). Round 2 — Regionals (Offline, 19-21 Feb at COEP, SPIT, DJ Sanghvi). Round 3 — Finals (23rd Feb at DJ Sanghvi, Mumbai).",
   },
   {
     question: "Q7 : Is there a registration fee?",

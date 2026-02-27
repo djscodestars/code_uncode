@@ -106,7 +106,7 @@ class Title {
     const textHeightScaled = this.plane.scale.y * 0.15;
     const textWidthScaled = textHeightScaled * aspect;
     this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5 - 0.2; // Push text further down
+    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeightScaled * 0.5; // Push text further down
     this.mesh.setParent(this.plane);
   }
 }
@@ -542,7 +542,7 @@ class App {
 
 export default function CircularGallery({
   items,
-  bend = 3,
+  bend = 10,
   textColor = '#ffffff',
   borderRadius = 0.05,
   font = 'bold 30px Figtree',
@@ -567,7 +567,7 @@ export default function CircularGallery({
   }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
   return (
     <div
-      className="w-full h-full cursor-grab active:cursor-grabbing"
+      className="w-full h-full"
       ref={containerRef} />
   );
 }

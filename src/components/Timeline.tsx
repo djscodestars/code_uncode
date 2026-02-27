@@ -23,7 +23,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const progressLineRef = useRef<SVGPathElement>(null);
-  const checkpointsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const ashRef = useRef<SVGImageElement>(null);
 
   // Theme colors
   const getThemeColors = () => {
@@ -44,34 +44,55 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const events: TimelineEvent[] = [
     {
       id: 1,
+      date: '15th February (Saturday)',
+      title: 'REGISTRATION BEGINS',
+      description: 'Start of Registrations for Code Uncode 2026 on Unstop',
+      position: 'right'
+    },
+    {
+      id: 2,
       date: '16th February (Sunday)',
       title: 'PRELIMS',
       description: 'Online | 5:05 PM - 7:05 PM. The first hurdle in your journey to become a champion.',
       position: 'left'
     },
     {
-      id: 2,
-      date: '19th February (Wednesday)',
-      title: 'REGIONAL - K. J. Somaiya',
-      description: 'First Regional Round at K. J. Somaiya School of Engineering (Vidyavihar).',
-      position: 'right'
-    },
-    {
       id: 3,
-      date: '20th February (Thursday)',
-      title: 'REGIONAL - SPIT',
-      description: 'Second Regional Round at Sardar Patel Institute of Technology.',
-      position: 'left'
+      date: '18th February (Tuesday)',
+      title: 'REGIONALS SHORTLISTING',
+      description: 'Calls for Regionals will be announced based on rank and preference across colleges',
+      position: 'right'
     },
     {
       id: 4,
-      date: '21th February (Friday)',
-      title: 'REGIONAL - DJ Sanghvi',
-      description: 'Third Regional Round at Dwarkadas J. Sanghvi College of Engineering.',
-      position: 'right'
+      date: '19th February (Wednesday)',
+      title: 'REGIONAL - COEP',
+      description: 'First Regional Round at COEP.',
+      position: 'left'
     },
     {
       id: 5,
+      date: '20th February (Thursday)',
+      title: 'REGIONAL - SPIT',
+      description: 'Second Regional Round at Sardar Patel Institute of Technology.',
+      position: 'right'
+    },
+    {
+      id: 6,
+      date: '21th February (Friday)',
+      title: 'REGIONAL - DJ Sanghvi',
+      description: 'Third Regional Round at Dwarkadas J. Sanghvi College of Engineering.',
+      position: 'left'
+    },
+    {
+      id: 7,
+      date: '22th February (Saturday)',
+      title: 'Shortlisting for the Finals',
+      description: 'Top 30 participants from regionals compete.',
+      position: 'right'
+    },
+    {
+      id: 8,
       date: '23rd February (Sunday)',
       title: 'FINALS',
       description: 'The Ultimate Showdown at Dwarkadas J. Sanghvi College of Engineering. Top 30 participants from regionals compete.',
@@ -102,18 +123,16 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
           end: 'bottom center',
           scrub: 1,
           onUpdate: (self) => {
-            // Activate checkpoints as the line progresses
             const progress = self.progress;
-            checkpointsRef.current.forEach((checkpoint, index) => {
-              if (checkpoint) {
-                const checkpointProgress = (index + 1) / events.length;
-                if (progress >= checkpointProgress - 0.1) {
-                  checkpoint.classList.add(styles.active);
-                } else {
-                  checkpoint.classList.remove(styles.active);
-                }
-              }
-            });
+
+            // Move the Ash image along the path
+            if (ashRef.current && pathRef.current) {
+              const point = pathRef.current.getPointAtLength(pathLength * progress);
+              gsap.set(ashRef.current, {
+                x: point.x - 80, // center relative to width="160"
+                y: point.y - 80,
+              });
+            }
           }
         }
       });
@@ -165,7 +184,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
 
         <div className={styles.timelineWrapper}>
           {/* SVG Path */}
-          <svg className={styles.timelineSvg} viewBox="0 0 100 1000" preserveAspectRatio="xMidYMid meet">
+          <svg className={styles.timelineSvg} viewBox="0 0 100 2000" preserveAspectRatio="xMidYMid meet">
             <defs>
               {/* Glow filter for the path */}
               <filter id="glow">
@@ -189,11 +208,10 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             <path
               ref={pathRef}
               d="M 50 0 
-                 Q 30 100, 50 200
-                 Q 70 300, 50 400
-                 Q 30 500, 50 600
-                 Q 70 700, 50 800
-                 Q 30 900, 50 1000"
+                 Q -100 250, 50 500
+                 Q 200 750, 50 1000
+                 Q -100 1250, 50 1500
+                 Q 200 1750, 50 2000"
               fill="none"
               stroke="rgba(255, 255, 255, 0.1)"
               strokeWidth="8"
@@ -204,16 +222,24 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             <path
               ref={progressLineRef}
               d="M 50 0 
-                 Q 30 100, 50 200
-                 Q 70 300, 50 400
-                 Q 30 500, 50 600
-                 Q 70 700, 50 800
-                 Q 30 900, 50 1000"
+                 Q -100 250, 50 500
+                 Q 200 750, 50 1000
+                 Q -100 1250, 50 1500
+                 Q 200 1750, 50 2000"
               fill="none"
               stroke="var(--theme-color)"
               strokeWidth="6"
               filter="url(#progressGlow)"
               className={styles.progressLine}
+            />
+
+            {/* Ash moving image */}
+            <image
+              ref={ashRef}
+              href={type === 'water' ? '/timeline/ash_on_whale.png' : '/timeline/ash.png'}
+              width="160"
+              height="160"
+              style={{ filter: 'drop-shadow(0px 0px 5px rgba(255,255,255,0.5))' }}
             />
           </svg>
 
@@ -225,14 +251,6 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
                 className={`${styles.eventRow} ${styles[event.position]}`}
                 style={{ top: `${(index + 0.5) * (100 / events.length)}%` }}
               >
-                {/* Checkpoint */}
-                <div
-                  ref={el => { checkpointsRef.current[index] = el; }}
-                  className={styles.checkpoint}
-                >
-                  <div className={styles.checkpointInner}></div>
-                </div>
-
                 {/* Event Card */}
                 <div
                   className={styles.eventCard}
@@ -241,7 +259,6 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
                   <div className={styles.cardDate}>{event.date}</div>
                   <h3 className={styles.cardTitle}>{event.title}</h3>
                   <p className={styles.cardDescription}>{event.description}</p>
-                  <div className={styles.cardConnector}></div>
                 </div>
               </div>
             ))}

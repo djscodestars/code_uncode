@@ -252,7 +252,7 @@
 }
 
 .partnerLogo {
-    height: 20vh;
+    height: 25vh;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
@@ -310,7 +310,7 @@
     }
 
     .partnerLogo {
-        height: 15vh;
+        height: 18vh;
     }
 
     .marqueeTrack {
@@ -390,7 +390,7 @@
     }
 
     .partnerLogo {
-        height: 12vh;
+        height: 15vh;
     }
 
     .marqueeTrack {
@@ -490,8 +490,9 @@
     }
 
     .partnerLogo {
-        height: 6vh;
-        max-width: 80px;
+        height: 11vh;
+        /* Reduced from 10vh */
+        max-width: 100px;
     }
 
     .marqueeTrack {

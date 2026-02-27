@@ -196,7 +196,7 @@ export default function LiveRegi({ type }: Props) {
                     <div className={styles.countdownHeader}>
                         <span className={styles.pokeballDivider}>⚫</span>
                         <p className={styles.countdownTitle}>Time Until</p>
-                        <p className={styles.countdownEventName}>CodeUncode Finals</p>
+                        <p className={styles.countdownEventName}>Offline Round</p>
                         <p className={styles.countdownDate}>20 March 2026</p>
                     </div>
 

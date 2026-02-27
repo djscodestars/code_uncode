@@ -215,7 +215,7 @@
 /* Hosting Partners Marquee - Water Theme */
 .marqueeContainer {
     position: absolute;
-    top: 72%;
+    top: 60%;
     left: 0;
     width: 95%;
     transform: translateY(-50%);
@@ -256,7 +256,7 @@
 }
 
 .partnerLogo {
-    height: 18vh;
+    height: 25vh;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.4));
@@ -309,12 +309,12 @@
     }
 
     .marqueeTitle {
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-bottom: 3vh;
     }
 
     .partnerLogo {
-        height: 15vh;
+        height: 18vh;
     }
 
     .marqueeTrack {
@@ -383,18 +383,18 @@
     }
 
     .marqueeContainer {
-        top: 75%;
+        top: 65%;
         width: 100%;
     }
 
     .marqueeTitle {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         letter-spacing: 2px;
         margin-bottom: 2vh;
     }
 
     .partnerLogo {
-        height: 12vh;
+        height: 15vh;
     }
 
     .marqueeTrack {
@@ -484,19 +484,20 @@
     }
 
     .marqueeContainer {
-        top: 78%;
+        top: 70%;
         width: 100%;
     }
 
     .marqueeTitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         letter-spacing: 1.5px;
         margin-bottom: 1.5vh;
     }
 
     .partnerLogo {
-        height: 6vh;
-        max-width: 80px;
+        height: 11vh;
+        /* Reduced from 10vh */
+        max-width: 100px;
     }
 
     .marqueeTrack {
