@@ -1,80 +1,82 @@
 .prizesSection {
   position: relative;
-  padding: clamp(60px, 8vw, 110px) clamp(16px, 6vw, 72px);
+  /* Increase padding to ensure enough space for bigger trophies */
+  padding: clamp(100px, 12vw, 160px) clamp(16px, 6vw, 72px);
   color: #f5f5f5;
   display: flex;
   justify-content: center;
+  /* Optional: gives it more breathing room if it's the only main section content */
+  min-height: 100vh;
+  align-items: center;
 }
 
 .sectionInner {
-  width: min(1200px, 95vw);
+  /* Increase width to allow a wider spread of the big trophies */
+  width: min(1400px, 95vw);
   text-align: center;
-  perspective: 1000px;
   position: relative;
   z-index: 1;
 }
 
 .title {
   color: #ffd700;
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 4px 4px 0px #000000;
-  margin-bottom: 20px;
-}
-
-.subtitle {
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 40px;
+  /* Add actual space between title and trophies using margin */
+  margin-bottom: 120px;
 }
 
 .trophyRow {
   display: flex;
   justify-content: center;
-  gap: clamp(40px, 5vw, 80px);
-  flex-wrap: wrap;
-}
-
-@media (min-width: 1024px) {
-  .trophyRow {
-    gap: clamp(50px, 6vw, 110px);
-  }
+  align-items: center;
+  /* Decrease gap */
+  gap: clamp(20px, 4vw, 60px);
 }
 
 .trophyItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 30px;
 }
 
-.trophyCard {
-  width: min(320px, 85vw);
-  height: 420px;
-  padding: 0;
-  transform-style: preserve-3d;
-  animation: float 6s ease-in-out infinite;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  background: transparent;
-}
-
+/* Arrange the podium visually: 2nd, 1st, 3rd */
 .trophyItem:nth-child(1) {
   order: 2;
+  /* 1st Place */
+  transform: translateY(-120px);
 }
 
 .trophyItem:nth-child(2) {
   order: 1;
+  /* Bring 2nd up slightly */
+  transform: translateY(-40px);
 }
 
 .trophyItem:nth-child(3) {
   order: 3;
+  /* Bring 3rd up slightly */
+  transform: translateY(-40px);
 }
 
+.trophyCard {
+  /* Make all 3 trophies slightly smaller */
+  width: min(280px, 26vw);
+  height: 400px;
+  background: transparent;
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+/* 1st Place trophy relative sizing! */
 .trophyItem:nth-child(1) .trophyCard {
+  width: min(380px, 34vw);
   height: 520px;
-  transform: translateY(-12px);
+  animation-delay: 0.3s;
 }
 
 .trophyItem:nth-child(2) .trophyCard {
@@ -86,43 +88,69 @@
 }
 
 .trophyCard:hover {
-  transform: scale(1.1) rotateY(10deg) rotateX(5deg);
+  transform: translateY(-15px) scale(1.05);
+  /* more dramatic hover */
 }
 
 .imageWrap {
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  overflow: visible;
 }
 
 .trophyImage {
-  width: 120%;
-  height: 120%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.7));
-  transform: translateZ(30px) rotateY(-4deg) rotateX(2deg);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* 1st Place - Gold Glow */
 .trophyItem:nth-child(1) .trophyImage {
-  transform: translateZ(36px) scale(1.22) rotateY(-3deg) rotateX(2deg);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.6));
 }
 
-.trophyCard:hover .trophyImage {
-  transform: translateZ(42px) scale(1.05) rotateY(6deg) rotateX(4deg);
+.trophyItem:nth-child(1) .trophyCard:hover .trophyImage {
+  transform: scale(1.1);
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 70px rgba(255, 215, 0, 0.9));
+}
+
+/* 2nd Place - Silver Glow */
+.trophyItem:nth-child(2) .trophyImage {
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 35px rgba(192, 192, 192, 0.6));
+}
+
+.trophyItem:nth-child(2) .trophyCard:hover .trophyImage {
+  transform: scale(1.1);
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 60px rgba(192, 192, 192, 0.9));
+}
+
+/* 3rd Place - Bronze Glow */
+.trophyItem:nth-child(3) .trophyImage {
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(205, 127, 50, 0.6));
+}
+
+.trophyItem:nth-child(3) .trophyCard:hover .trophyImage {
+  transform: scale(1.1);
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 55px rgba(205, 127, 50, 0.9));
 }
 
 .trophyLabel {
-  font-size: 1.2rem;
+  /* Increased text size */
+  font-size: 2.2rem;
+  font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  margin: 0;
 }
 
-
+/* Even bigger 1st place text */
+.trophyItem:nth-child(1) .trophyLabel {
+  font-size: 3rem;
+}
 
 @keyframes float {
 
@@ -132,17 +160,63 @@
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-20px);
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .trophyCard {
-    width: min(320px, 90vw);
-    height: 280px;
+    width: min(240px, 26vw);
+    height: 360px;
   }
 
-  .imageWrap {
-    padding: 18px;
+  .trophyItem:nth-child(1) .trophyCard {
+    width: min(320px, 34vw);
+    height: 460px;
+  }
+
+  .trophyLabel {
+    font-size: 1.6rem;
+  }
+
+  .trophyItem:nth-child(1) .trophyLabel {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    margin-bottom: 60px;
+  }
+
+  .trophyRow {
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  /* Reset order and offsets for mobile stacking */
+  .trophyItem:nth-child(1) {
+    order: 1;
+    transform: translateY(0);
+  }
+
+  .trophyItem:nth-child(2) {
+    order: 2;
+    transform: translateY(0);
+  }
+
+  .trophyItem:nth-child(3) {
+    order: 3;
+    transform: translateY(0);
+  }
+
+  .trophyItem:nth-child(1) .trophyCard {
+    width: min(340px, 85vw);
+    height: 480px;
+  }
+
+  .trophyCard {
+    width: min(280px, 80vw);
+    height: 380px;
   }
 }

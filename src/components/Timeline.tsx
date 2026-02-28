@@ -30,12 +30,12 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
   const getThemeColors = () => {
     switch (type) {
       case 'water':
-        return { hex: '#3b82f6', rgb: '59, 130, 246' };
+        return { hex: '#1d4ed8', rgb: '29, 78, 216' }; // Darker blue
       case 'grass':
-        return { hex: '#22c55e', rgb: '34, 197, 94' };
+        return { hex: '#15803d', rgb: '21, 128, 61' }; // Darker green
       case 'fire':
       default:
-        return { hex: '#ff4444', rgb: '255, 68, 68' };
+        return { hex: '#b91c1c', rgb: '185, 28, 28' }; // Darker red
     }
   };
 
@@ -129,8 +129,8 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             if (ashRef.current && pathRef.current) {
               const point = pathRef.current.getPointAtLength(pathLength * progress);
               gsap.set(ashRef.current, {
-                x: point.x - 80, // center relative to width="160"
-                y: point.y - 80,
+                x: point.x - 40, // center relative to width="80"
+                y: point.y - 40,
               });
             }
           }
@@ -156,8 +156,8 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
               duration: 0.8,
               scrollTrigger: {
                 trigger: card,
-                start: 'top 95%', // Starts earlier when scrolling down
-                end: 'top 55%',
+                start: 'top 180%', // Starts much earlier when scrolling down
+                end: 'top 80%',
                 scrub: 1,
               }
             }
@@ -171,7 +171,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
 
   return (
     <section
-      className={`${styles.timelineSection} ${(type === 'grass' || type === 'fire') ? styles.grassBackground : ''} ${type === 'water' ? styles.waterBackground : ''}`}
+      className={`${styles.timelineSection} ${type === 'grass' ? styles.grassBackground : ''} ${type === 'water' ? styles.waterBackground : ''} ${type === 'fire' ? styles.fireBackground : ''}`}
       ref={timelineRef}
       style={{
         '--theme-color': themeColor,
@@ -237,9 +237,9 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
             <image
               ref={ashRef}
               href={type === 'water' ? '/timeline/ash_on_whale.png' : '/timeline/ash.png'}
-              width="160"
-              height="160"
-              style={{ filter: 'drop-shadow(0px 0px 5px rgba(255,255,255,0.5))' }}
+              width="110"
+              height="110"
+              style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.5))' }}
             />
           </svg>
 
@@ -251,12 +251,14 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
                 className={`${styles.eventRow} ${styles[event.position]}`}
                 style={{ top: `${(index + 0.5) * (100 / events.length)}%` }}
               >
+                <div className={`${styles.checkpoint} ${styles.active}`}></div>
                 {/* Event Card */}
                 <div
                   className={styles.eventCard}
                   data-event-id={event.id}
                   style={{ visibility: event.invisible ? 'hidden' : 'visible' }}
                 >
+                  <div className={styles.cardConnector}></div>
                   <h3 className={styles.cardTitle}>{event.title}</h3>
                   <p className={styles.cardDescription}>{event.description}</p>
                 </div>

@@ -43,8 +43,7 @@ const PrizesSection: React.FC<PrizesSectionProps> = ({ type = 'fire' }) => {
     <section className={styles.prizesSection}>
       <div className={styles.sectionInner}>
         <h2 className={styles.title} style={{ color: themeColor }}>Prizes</h2>
-        <p className={styles.subtitle}>Trophies worthy of legendary competitors.</p>
-
+        <br/>
         <div className={styles.trophyRow}>
           {prizes.map((prize) => (
             <div key={prize.title} className={styles.trophyItem}>
