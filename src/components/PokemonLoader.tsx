@@ -169,7 +169,7 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className={styles.cardBackground}>
-                      <img src="/loading/blue.jpg" alt="Water Background" />
+                      <img src="/loading/blue1.png" alt="Water Background" />
                     </div>
                     <div className={styles.pokemonImage}>
                       <img src="/loader/bluepokemon.png" alt="Squirtle" />
