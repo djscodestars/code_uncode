@@ -61,6 +61,26 @@
     padding: clamp(10px, 2.2vh, 24px) 0 clamp(0px, 1vh, 10px);
 }
 
+.skipButton {
+    position: absolute;
+    right: clamp(12px, 2vw, 24px);
+    top: clamp(12px, 2.2vh, 24px);
+    z-index: 20;
+    border: 1px solid rgba(87, 90, 98, 0.55);
+    border-radius: 999px;
+    background: rgba(243, 243, 246, 0.82);
+    padding: 10px 16px;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+}
+
+.skipText {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(0.52rem, 1.1vw, 0.64rem);
+    color: #575a62;
+    letter-spacing: 0.6px;
+}
+
 .pokedexTop {
     display: none;
 }
@@ -77,7 +97,7 @@
 }
 
 .professorOak {
-    width: clamp(180px, 17vw, 280px);
+    width: clamp(220px, 20vw, 340px);
     height: auto;
     object-fit: contain;
     image-rendering: pixelated;
@@ -222,6 +242,7 @@
     padding: 0;
     transition: flex-basis 0.45s ease, width 0.45s ease, transform 0.45s ease;
     box-shadow: none;
+    perspective: 1100px;
 }
 
 .cardsContainer:hover .starterCard {
@@ -269,6 +290,8 @@
     justify-self: center;
     margin-inline: auto;
     margin-block: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .pokemonImage img {
@@ -279,11 +302,19 @@
     transform: scale(1.7);
     transform-origin: center;
     image-rendering: pixelated;
-    transition: transform 0.45s ease;
+    backface-visibility: hidden;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+}
+
+.starterCard:hover .pokemonImage {
+    transform: translateY(-16px);
 }
 
 .starterCard:hover .pokemonImage img {
-    transform: scale(2.15);
+    transform: translateZ(90px) rotateX(8deg) scale(2.22);
+    filter:
+        drop-shadow(0 22px 26px rgba(0, 0, 0, 0.34))
+        drop-shadow(0 10px 10px rgba(0, 0, 0, 0.24));
 }
 
 .pokeball {
@@ -372,7 +403,7 @@
     }
 
     .professorOak {
-        width: clamp(138px, 32vw, 210px);
+        width: clamp(175px, 46vw, 260px);
     }
 
     .platform {
@@ -391,6 +422,16 @@
     .message {
         font-size: clamp(0.52rem, 2.45vw, 0.68rem);
         line-height: 1.55;
+    }
+
+    .skipButton {
+        padding: 8px 12px;
+        right: 10px;
+        top: 10px;
+    }
+
+    .skipText {
+        font-size: 0.46rem;
     }
 
     .selectionPanel {
@@ -441,7 +482,7 @@
 
 @media (max-width: 480px) {
     .professorOak {
-        width: clamp(116px, 34vw, 166px);
+        width: clamp(136px, 38vw, 200px);
     }
 
     .platform {
@@ -459,6 +500,15 @@
     .message {
         font-size: clamp(0.44rem, 2.75vw, 0.56rem);
         line-height: 1.5;
+    }
+
+    .skipButton {
+        padding: 7px 10px;
+        top: 8px;
+    }
+
+    .skipText {
+        font-size: 0.4rem;
     }
 
     .selectionPanel {

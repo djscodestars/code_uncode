@@ -84,6 +84,19 @@ export default function PokemonLoader({ onSelect, initialStage = 'intro' }: Poke
               <img src="/loader/background.png" alt="Intro Background" className={styles.bgImage} />
             </div>
 
+            <motion.button
+              type="button"
+              className={styles.skipButton}
+              onClick={() => setStage('selection')}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.2 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              <span className={styles.skipText}>Skip Intro</span>
+            </motion.button>
+
             {/* Pokedex-style container */}
             <div className={styles.pokedexContainer}>
               {/* Red top border accent */}
