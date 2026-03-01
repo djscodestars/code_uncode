@@ -73,11 +73,10 @@ export default function Parallax({ type }: ParallaxProps) {
       tl.to(hoOh.current, { x: "-110vw", ease: "none" }, 0)
         .to(hoOh.current, { y: "-50vh", scale: 4, rotate: -15, ease: "power2.out" }, 0);
 
-      tl.to(moltres.current, { x: "150vw", ease: "none" }, 0);
+      tl.to(moltres.current, { x: "100vw", ease: "none" }, 0);
       tl.to(moltres.current, {
         keyframes: [
-          { y: "-80vh", scale: 3.5, rotate: 15, ease: "power2.out" },
-          { y: "-40vh", scale: 3.5, rotate: 15, ease: "power2.in" }
+          { y: "-80vh", scale: 3.5, rotate: 15, ease: "power2.out" }
         ]
       }, 0);
 
