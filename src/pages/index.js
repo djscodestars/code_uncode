@@ -52,6 +52,7 @@ function Home() {
   const getMobileLandingImage = () => {
     if (selectedType === 'fire') return '/mobile_landing_red.png';
     if (selectedType === 'water') return '/mobile_landing_blue.png';
+    if (selectedType === 'grass') return '/mobile_landing_green.png';
     return '/mobile_landing_red.png';
   };
 
