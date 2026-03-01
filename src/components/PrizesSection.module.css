@@ -42,7 +42,6 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  flex: 0 0 auto;
 }
 
 /* Arrange the podium visually: 2nd, 1st, 3rd */
@@ -191,46 +190,41 @@
   }
 
   .trophyRow {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 8px;
-    overflow: visible;
-    padding: 0;
+    flex-direction: column;
+    gap: 80px;
   }
 
-  /* Keep podium ordering in one horizontal row */
+  /* Reset order and offsets for mobile stacking */
   .trophyItem:nth-child(1) {
-    order: 2;
-    transform: translateY(-20px);
+    order: 1;
+    transform: translateY(0);
   }
 
   .trophyItem:nth-child(2) {
-    order: 1;
-    transform: translateY(10px);
+    order: 2;
+    transform: translateY(0);
   }
 
   .trophyItem:nth-child(3) {
     order: 3;
-    transform: translateY(10px);
+    transform: translateY(0);
   }
 
   .trophyItem:nth-child(1) .trophyCard {
-    width: 34vw;
-    height: 48vw;
+    width: min(340px, 85vw);
+    height: 480px;
   }
 
   .trophyCard {
-    width: 28vw;
-    height: 40vw;
+    width: min(280px, 80vw);
+    height: 380px;
   }
 
   .trophyLabel {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 
   .trophyItem:nth-child(1) .trophyLabel {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 }

@@ -144,7 +144,7 @@ export default function LiveRegi({ type }: Props) {
 
     // ── Render ─────────────────────────────────────────────────────────────────
     return (
-        <section className={styles.section}>
+        <section>
             <h2
                 className={styles.sectionTitle}
                 style={{
