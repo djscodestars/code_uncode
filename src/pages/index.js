@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Parallax from '@/components/Parallax.tsx';
+import dynamic from 'next/dynamic';
 import PokemonLoader from '@/components/PokemonLoader.tsx';
 import AboutPokedex from '@/components/AboutPokedex.tsx';
 import AboutCodeUncode from '@/components/AboutCodeUncode.tsx';
@@ -12,10 +12,13 @@ import LiveRegi from '@/components/LiveRegi.tsx';
 import MusicPlayer from '@/components/MusicPlayer.tsx';
 import Footer from '@/components/Footer.tsx';
 
+const Parallax = dynamic(() => import('@/components/Parallax.tsx'), { ssr: false });
+
 function Home() {
   const [showIntro, setShowIntro] = useState(true);
   const [selectedType, setSelectedType] = useState(null);
   const [skipToSelection, setSkipToSelection] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleTypeSelect = (type) => {
     setSelectedType(type);
@@ -47,6 +50,16 @@ function Home() {
       document.body.style.backgroundImage = '';
     };
   }, [selectedType]);
+
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
+  }, []);
 
   return (
     <>
@@ -99,7 +112,17 @@ function Home() {
           </button>
 
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
-          <Parallax type={selectedType} />
+          {isMobile ? (
+            <div style={{ width: '100%', lineHeight: 0, overflow: 'hidden' }}>
+              <img
+                src="/mobile_landing.png"
+                alt="Code UnCode mobile landing"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
+          ) : (
+            <Parallax type={selectedType} />
+          )}
           {/* Continuous overlay wrapper for all sections after hero */}
           <div style={{ position: 'relative', marginTop: '-1px' }}>
             <div
