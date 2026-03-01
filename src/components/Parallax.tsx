@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useLayoutEffect, useMemo, useState } from "react";
+import { useRef, useLayoutEffect, useMemo, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import fireStyles from "./Parallax.module.css";
@@ -94,6 +94,16 @@ export default function Parallax({ type }: ParallaxProps) {
 
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    if (!isReady) return;
+
+    const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => cancelAnimationFrame(rafId);
+  }, [isReady]);
 
   return (
     <>

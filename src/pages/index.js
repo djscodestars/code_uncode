@@ -13,7 +13,19 @@ import MusicPlayer from '@/components/MusicPlayer.tsx';
 import Footer from '@/components/Footer.tsx';
 import MobileSponsorsMarquee from '@/components/MobileSponsorsMarquee.tsx';
 
-const Parallax = dynamic(() => import('@/components/Parallax.tsx'), { ssr: false });
+const Parallax = dynamic(() => import('@/components/Parallax.tsx'), {
+  ssr: false,
+  loading: () => (
+    <div
+      style={{
+        width: '100%',
+        height: '100dvh',
+        minHeight: '100vh',
+        background: 'linear-gradient(to bottom, #06080f 0%, #0b1020 100%)',
+      }}
+    />
+  ),
+});
 
 function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -70,7 +82,11 @@ function Home() {
 
   return (
     <>
-      {!selectedType && <PokemonLoader onSelect={(type) => { setSelectedType(type); setSkipToSelection(false); }} initialStage={skipToSelection ? 'selection' : 'intro'} />}
+      {!selectedType && <PokemonLoader onSelect={(type) => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        setSelectedType(type);
+        setSkipToSelection(false);
+      }} initialStage={skipToSelection ? 'selection' : 'intro'} />}
       {selectedType && (
         <>
           {/* Sticky Back to Starter Selection Button */}
