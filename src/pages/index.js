@@ -131,35 +131,48 @@ function Home() {
               transform: 'translateX(-50%)',
               zIndex: 9999,
               display: 'block',
-              width: '130px',
-              height: '42px',
+              width: '60px',
+              height: '60px',
               padding: '0',
               overflow: 'hidden',
-              borderRadius: '50px',
+              borderRadius: '60px',
               border: '3px solid white',
               textDecoration: 'none',
               boxShadow: `0 8px 32px ${selectedType === 'fire' ? 'rgba(255, 69, 0, 0.4)' :
                 selectedType === 'water' ? 'rgba(0, 191, 255, 0.4)' :
                   'rgba(50, 205, 50, 0.4)'
                 }`,
-              transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
             }}
             onMouseEnter={e => {
+              e.currentTarget.style.width = '160px';
               e.currentTarget.style.transform = 'translateX(-50%) scale(1.08)';
               e.currentTarget.style.boxShadow = `0 12px 40px ${selectedType === 'fire' ? 'rgba(255, 69, 0, 0.6)' :
                 selectedType === 'water' ? 'rgba(0, 191, 255, 0.6)' :
                   'rgba(50, 205, 50, 0.6)'
                 }`;
+              const unstopImg = e.currentTarget.querySelector('#unstop-img');
+              if (unstopImg) unstopImg.style.opacity = '1';
+              const unImg = e.currentTarget.querySelector('#un-img');
+              if (unImg) unImg.style.opacity = '0';
             }}
             onMouseLeave={e => {
+              e.currentTarget.style.width = '60px';
               e.currentTarget.style.transform = 'translateX(-50%) scale(1)';
               e.currentTarget.style.boxShadow = `0 8px 32px ${selectedType === 'fire' ? 'rgba(255, 69, 0, 0.4)' :
                 selectedType === 'water' ? 'rgba(0, 191, 255, 0.4)' :
                   'rgba(50, 205, 50, 0.4)'
                 }`;
+              const unstopImg = e.currentTarget.querySelector('#unstop-img');
+              if (unstopImg) unstopImg.style.opacity = '0';
+              const unImg = e.currentTarget.querySelector('#un-img');
+              if (unImg) unImg.style.opacity = '1';
             }}
           >
-            <img src="/unstop.png" alt="Unstop" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <div style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img id="unstop-img" src="/unstop.png" alt="Unstop" style={{ position: 'absolute', width: '160px', height: '100%', objectFit: 'cover', opacity: 0, transition: 'opacity 0.4s ease' }} />
+              <img id="un-img" src="/un.png" alt="Un" style={{ position: 'absolute', width: '60px', height: '100%', objectFit: 'cover', opacity: 1, transition: 'opacity 0.4s ease' }} />
+            </div>
           </a>
 
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
