@@ -206,6 +206,8 @@
   color: var(--theme-color);
   font-weight: 700;
   margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-shadow: 0 0 10px rgba(var(--theme-rgb), 0.5);

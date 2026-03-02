@@ -77,12 +77,12 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                             <span>+91 89285 27980</span>
                         </div>
                         <div className={styles.contactItem}>
-                            <span>Sachin:</span>
-                            <span>+91 98927 09032</span>
+                            <span>Aaryan Urunkar:</span>
+                            <span>+91 79778 84919</span>
                         </div>
                         <div className={styles.contactItem}>
-                            <span>Yash Patel:</span>
-                            <span>+91 93216 00186</span>
+                            <span>Aryan Badgujar:</span>
+                            <span>+91 93722 51416</span>
                         </div>
                     </div>
                 </div>

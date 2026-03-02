@@ -119,6 +119,49 @@ function Home() {
             <span>Starter Selection</span>
           </button>
 
+          {/* Sticky Register Button at Bottom */}
+          <a
+            href="https://unstop.com/p/code-uncode-2026-shri-vile-parle-kelavani-mandals-dwarkadas-j-sanghvi-college-of-engineering-djsce-mumbai-1651390"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              position: 'fixed',
+              bottom: '40px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 9999,
+              display: 'block',
+              width: '130px',
+              height: '42px',
+              padding: '0',
+              overflow: 'hidden',
+              borderRadius: '50px',
+              border: '3px solid white',
+              textDecoration: 'none',
+              boxShadow: `0 8px 32px ${selectedType === 'fire' ? 'rgba(255, 69, 0, 0.4)' :
+                selectedType === 'water' ? 'rgba(0, 191, 255, 0.4)' :
+                  'rgba(50, 205, 50, 0.4)'
+                }`,
+              transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateX(-50%) scale(1.08)';
+              e.currentTarget.style.boxShadow = `0 12px 40px ${selectedType === 'fire' ? 'rgba(255, 69, 0, 0.6)' :
+                selectedType === 'water' ? 'rgba(0, 191, 255, 0.6)' :
+                  'rgba(50, 205, 50, 0.6)'
+                }`;
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateX(-50%) scale(1)';
+              e.currentTarget.style.boxShadow = `0 8px 32px ${selectedType === 'fire' ? 'rgba(255, 69, 0, 0.4)' :
+                selectedType === 'water' ? 'rgba(0, 191, 255, 0.4)' :
+                  'rgba(50, 205, 50, 0.4)'
+                }`;
+            }}
+          >
+            <img src="/unstop.png" alt="Unstop" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </a>
+
           <MusicPlayer type={selectedType} onReset={() => setSelectedType(null)} />
           {isMobile ? (
             <>

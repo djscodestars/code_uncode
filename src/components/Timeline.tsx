@@ -12,6 +12,7 @@ interface TimelineEvent {
   title: string;
   description: string;
   position: 'left' | 'right';
+  date?: string;
   invisible?: boolean;
 }
 
@@ -51,6 +52,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     },
     {
       id: 2,
+      date: '20 March',
       title: 'PRELIMS',
       description: 'Online Round with all participants pan-India',
       position: 'right'
@@ -63,32 +65,36 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
     },
     {
       id: 4,
+      date: '28 March',
       title: 'REGIONAL - COEP',
-      description: 'First Regional Round at COEP,Pune',
+      description: 'First Regional Round at COEP, Pune',
       position: 'right'
     },
     {
       id: 5,
+      date: '30 March',
       title: 'REGIONAL - SPIT',
-      description: 'Second Regional Round at SPIT,Andheri',
+      description: 'Second Regional Round at SPIT, Andheri (Mumbai)',
       position: 'left'
     },
     {
       id: 6,
+      date: '1 April',
       title: 'REGIONAL - DJ Sanghvi',
-      description: 'Third Regional Round held at the Home College',
+      description: 'Third Regional Round held at DJ Sanghvi, Mumbai',
       position: 'right'
     },
     {
       id: 7,
-      title: 'Shortlisting for the Finals',
-      description: 'Top 30 participants from each of the 3 Regionals Compete for the Championship',
+      title: 'FINALS SHORTLISTING',
+      description: 'Top 30 participants from each Regional Compete for the Championship',
       position: 'left'
     },
     {
       id: 8,
+      date: '12 April',
       title: 'FINALS',
-      description: 'The Ultimate Showdown at DJ Sanghvi',
+      description: 'The Ultimate Showdown at DJ Sanghvi, Mumbai',
       position: 'right'
     },
     {
@@ -301,6 +307,7 @@ const Timeline: React.FC<TimelineProps> = ({ type = 'fire' }) => {
                   style={{ visibility: event.invisible ? 'hidden' : 'visible' }}
                 >
                   <div className={styles.cardConnector}></div>
+                  {event.date && <p className={styles.cardDate}>{event.date}</p>}
                   <h3 className={styles.cardTitle}>{event.title}</h3>
                   <p className={styles.cardDescription}>{event.description}</p>
                 </div>

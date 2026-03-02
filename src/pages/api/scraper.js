@@ -8,7 +8,7 @@ import { NextApiRequest, NextApiResponse } from "next";
  */
 export default async function handler(req, res) {
   try {
-    const apiUrl = "https://unstop.com/api/public/competition/1638208";
+    const apiUrl = "https://unstop.com/api/public/competition/1651390";
 
     const response = await fetch(apiUrl, {
       headers: {

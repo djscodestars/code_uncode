@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Q6 : What are the rounds?",
     answer:
-      "Round 1 — Prelims (Online, 16th Feb). Round 2 — Regionals (Offline, 19-21 Feb at COEP, SPIT, DJ Sanghvi). Round 3 — Finals (23rd Feb at DJ Sanghvi, Mumbai).",
+      "Round 1 — Prelims (Online, 20th March). Round 2 — Regionals (Offline, 28th March, 30th March, 1st April at COEP, SPIT, DJ Sanghvi). Round 3 — Finals (12th April at DJ Sanghvi, Mumbai).",
   },
   {
     question: "Q7 : Is there a registration fee?",
@@ -66,6 +66,10 @@ const guidelines = [
   "► All submissions must compile and run without errors.",
   "► Internet access is restricted to the official judge platform only.",
   "► Late submissions after the timer ends will NOT be evaluated.",
+  "► Top 120 coders per center advance to Regionals.",
+  "► Top 90 coders overall advance to the Grand Finale (30 per Regional center).",
+  "► Participants can attend at most 2 Regionals. Best performance is considered.",
+  "► Some centers may require Regionalists to carry their devices (intimated beforehand).",
   "► Participants are requested to arrive at alloted centers during Regionals & Finals 45 minutes before start.",
   "► Contact the coordinator immediately for any technical issues.",
   "► Decision of the judges is final and binding in all cases.",

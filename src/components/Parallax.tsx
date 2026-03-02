@@ -148,15 +148,10 @@ export default function Parallax({ type }: ParallaxProps) {
             {/* Hosting partners sit in the bottom water section of the foreground image */}
             <div className={styles.marqueeContainer}>
               <h3 className={styles.marqueeTitle}>Our Hosting Partners</h3>
-              <div className={styles.marqueeContent}>
-                {[...Array(6)].map((_, index) => (
-                  <div key={index} className={styles.marqueeTrack}>
-                    <img src="/logos/ramanujan.webp" alt="Ramanujan" className={styles.partnerLogo} />
-                    <img src="/logos/codestars.webp" alt="CodeStars" className={styles.partnerLogo} />
-                    <img src="/logos/sdc.webp" alt="SDC" className={styles.partnerLogo} />
-                    <img src="/logos/ieeespit.webp" alt="IEEE SPIT" className={styles.partnerLogo} />
-                  </div>
-                ))}
+              <div className={styles.staticPartnersContent}>
+                <img src="/logos/ramanujan.webp" alt="Ramanujan" className={styles.partnerLogo} />
+                <img src="/logos/codestars.webp" alt="CodeStars" className={styles.partnerLogo} />
+                <img src="/logos/sdc.webp" alt="SDC" className={styles.partnerLogo} />
               </div>
             </div>
           </div>

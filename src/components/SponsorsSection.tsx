@@ -28,13 +28,13 @@ const SponsorsSection: React.FC<SponsorsSectionProps> = ({ type = "fire" }) => {
                         </div>
                     </div>
 
-                    {/* Nataraj logo — red glow */}
+                    {/* Sundaram logo — green glow */}
                     <div className={styles.logoItem}>
                         <div className={styles.logoWrap}>
                             <img
-                                src="/logos/nataraj.webp"
-                                alt="Nataraj"
-                                className={`${styles.logo} ${styles.logoNataraj}`}
+                                src="/logos/sundaram.png"
+                                alt="Sundaram"
+                                className={`${styles.logo} ${styles.logoSundaram}`}
                             />
                         </div>
                     </div>

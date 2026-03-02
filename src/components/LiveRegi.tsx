@@ -6,7 +6,7 @@ import styles from "./LiveRegi.module.css";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
-const EVENT_DATE = new Date("2026-03-20T00:00:00+05:30");
+const EVENT_DATE = new Date("2026-03-20T20:05:00+05:30");
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 async function fetchRegisCount(): Promise<number | null> {
@@ -196,7 +196,7 @@ export default function LiveRegi({ type }: Props) {
                     <div className={styles.countdownHeader}>
                         <span className={styles.pokeballDivider}>⚫</span>
                         <p className={styles.countdownTitle}>Time Until</p>
-                        <p className={styles.countdownEventName}>Offline Round</p>
+                        <p className={styles.countdownEventName}>Online Prelims</p>
                         <p className={styles.countdownDate}>20 March 2026</p>
                     </div>
 
