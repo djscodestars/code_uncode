@@ -31,6 +31,21 @@
 /* ── Logo row ────────────────────────────────────────────────────────────── */
 .logosRow {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(60px, 10vw, 120px);
+}
+
+.triangleTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(60px, 12vw, 200px);
+    flex-wrap: wrap;
+}
+
+.triangleBottom {
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: clamp(50px, 10vw, 160px);
@@ -60,6 +75,17 @@
     height: auto;
     object-fit: contain;
     transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+/* ── Quantiphi logo — white glow ──────────────────────────────────────── */
+.logoQuantiphi {
+    width: clamp(260px, 35vw, 480px); /* slightly larger as title sponsor */
+    filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 55px rgba(255, 255, 255, 0.45)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.55));
+}
+
+.logoQuantiphi:hover {
+    transform: translateY(-14px) scale(1.06);
+    filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.65)) drop-shadow(0 18px 36px rgba(0, 0, 0, 0.7));
 }
 
 /* ── Boot logo — purplish-blue glow ──────────────────────────────────────── */
@@ -140,5 +166,10 @@
 
     .logosRow {
         gap: 44px;
+    }
+
+    .triangleBottom {
+        gap: 44px;
+        flex-direction: column;
     }
 }

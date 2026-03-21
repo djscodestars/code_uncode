@@ -22,7 +22,7 @@ const songFiles = [
 
 export default function MusicPlayer({ type, onReset }: MusicPlayerProps) {
     const [isPlaying, setIsPlaying] = useState(true);
-    const [isMuted, setIsMuted] = useState(true);
+    const [isMuted, setIsMuted] = useState(false);
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);

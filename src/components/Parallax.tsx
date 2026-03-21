@@ -41,7 +41,7 @@ export default function Parallax({ type }: ParallaxProps) {
       mountains: type === "fire" ? "mountains.webp" : type === "water" ? "sun.webp" : "mountains.webp",
       trees: type === "fire" ? "trees.webp" : type === "water" ? "water-layer.webp" : "trees.webp",
       foreground: "foreground-layer.webp",
-      logo: type === "fire" ? "uncode-logo.webp" : type === "water" ? "uncode-logoblue.webp" : "uncodelogo-green.svg",
+      logo: type === "fire" ? "uncode-red.png" : type === "water" ? "uncode-blue.png" : "uncode-green.png",
       folder,
     };
   }, [type]);
@@ -55,6 +55,8 @@ export default function Parallax({ type }: ParallaxProps) {
   // mask ref removed — no longer using a separate mask layer
 
   useLayoutEffect(() => {
+    if (!isReady) return;
+    
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
@@ -96,12 +98,22 @@ export default function Parallax({ type }: ParallaxProps) {
     }, parallaxOuterRef);
 
     return () => ctx.revert();
+  }, [type, isReady]);
+
+  // Reset isReady when type changes so the old timeline reverts and waits for new images
+  useEffect(() => {
+    setIsReady(false);
+    // Attempt smooth scroll reset to top
+    if (window.scrollY > 0) {
+      window.scrollTo(0, 0);
+    }
   }, [type]);
 
   useEffect(() => {
     if (!isReady) return;
 
     const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.sort();
       ScrollTrigger.refresh();
     });
 
@@ -130,6 +142,18 @@ export default function Parallax({ type }: ParallaxProps) {
           </div>
 
           <div ref={textContent} className={styles.copy}>
+            <div className={styles.titleSponsorWrapper} style={{ 
+              "--sponsor-margin-bottom": "-5px", 
+              "--quantiphi-width": "clamp(160px, 22vw, 290px)",
+              "--quantiphi-glow-spread": "15px",
+              "--quantiphi-margin-bottom": "0px",
+              "--presents-font-size": "1rem",
+              "--presents-letter-spacing": "3px",
+              "--presents-color": "#ffffff"
+             } as React.CSSProperties}>
+              <img src="/logos/quantiphi.png" alt="Quantiphi" className={styles.quantiphiLogo} />
+              <div className={styles.presentsText}>PRESENTS</div>
+            </div>
             <img className={styles.heroLogo} src={`/${images.folder}/${images.logo}`} alt="Logo" />
             <h2 className={styles.heroSubtitle}>India&apos;s Premier ICPC-Style Competition</h2>
             <p className={styles.heroDescription}>
@@ -172,7 +196,6 @@ export default function Parallax({ type }: ParallaxProps) {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );

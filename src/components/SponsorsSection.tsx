@@ -17,25 +17,39 @@ const SponsorsSection: React.FC<SponsorsSectionProps> = ({ type = "fire" }) => {
                 </h2>
 
                 <div className={styles.logosRow}>
-                    {/* Boot logo — dark blue glow */}
-                    <div className={styles.logoItem}>
-                        <div className={styles.logoWrap}>
-                            <img
-                                src="/logos/boot.webp"
-                                alt="Boot"
-                                className={`${styles.logo} ${styles.logoBoot}`}
-                            />
+                    <div className={styles.triangleTop}>
+                        <div className={styles.logoItem}>
+                            <div className={styles.logoWrap}>
+                                <img
+                                    src="/logos/quantiphi.png"
+                                    alt="Quantiphi"
+                                    className={`${styles.logo} ${styles.logoQuantiphi}`}
+                                />
+                            </div>
                         </div>
                     </div>
 
-                    {/* Sundaram logo — green glow */}
-                    <div className={styles.logoItem}>
-                        <div className={styles.logoWrap}>
-                            <img
-                                src="/logos/sundaram.png"
-                                alt="Sundaram"
-                                className={`${styles.logo} ${styles.logoSundaram}`}
-                            />
+                    <div className={styles.triangleBottom}>
+                        {/* Boot logo — dark blue glow */}
+                        <div className={styles.logoItem}>
+                            <div className={styles.logoWrap}>
+                                <img
+                                    src="/logos/boot.webp"
+                                    alt="Boot"
+                                    className={`${styles.logo} ${styles.logoBoot}`}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Sundaram logo — green glow */}
+                        <div className={styles.logoItem}>
+                            <div className={styles.logoWrap}>
+                                <img
+                                    src="/logos/sundaram.png"
+                                    alt="Sundaram"
+                                    className={`${styles.logo} ${styles.logoSundaram}`}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

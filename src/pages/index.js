@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import PokemonLoader from '@/components/PokemonLoader.tsx';
+import Head from 'next/head';
 
 // Lazy-loaded: only imported once starter is selected (reduces initial bundle + memory)
 const Parallax = dynamic(() => import('@/components/Parallax.tsx'), { ssr: false });
@@ -35,10 +36,10 @@ function Home() {
   }, [selectedType]);
 
   const getMobileLandingImage = useCallback(() => {
-    if (selectedType === 'fire') return '/mobile_landing_red.webp';
-    if (selectedType === 'water') return '/mobile_landing_blue.webp';
-    if (selectedType === 'grass') return '/mobile_landing_green.webp';
-    return '/mobile_landing_red.webp';
+    if (selectedType === 'fire') return '/mobile_landing_red.png';
+    if (selectedType === 'water') return '/mobile_landing_blue.png';
+    if (selectedType === 'grass') return '/mobile_landing_green.png';
+    return '/mobile_landing_red.png';
   }, [selectedType]);
 
   // Apply global background to body
@@ -67,6 +68,15 @@ function Home() {
 
   return (
     <>
+      <Head>
+        <title>Code UnCode 2026 | DJSCE Mumbai</title>
+        <meta name="description" content="India's Premier ICPC-Style Competition. Join us for Code UnCode 2026 at SVKM's Dwarkadas J. Sanghvi College of Engineering, Mumbai. Compete with 1,600+ participants from 370+ institutes!" />
+        <meta name="keywords" content="Code UnCode, DJSCE, Coding Competition, Hackathon, Mumbai, ICPC, Programming Contests, SVKM" />
+        <meta property="og:title" content="Code UnCode 2026 | DJSCE" />
+        <meta property="og:description" content="India's Premier ICPC-Style Competition. Join us for Code UnCode 2026!" />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+      </Head>
       {!selectedType && <PokemonLoader onSelect={(type) => {
         window.scrollTo({ top: 0, behavior: 'auto' });
         setSelectedType(type);

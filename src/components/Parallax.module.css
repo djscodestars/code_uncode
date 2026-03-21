@@ -100,6 +100,35 @@
     cursor: pointer;
 }
 
+.titleSponsorWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--sponsor-margin-bottom, 10px);
+    margin-top: 5vh;
+}
+
+.quantiphiLogo {
+    width: var(--quantiphi-width, clamp(160px, 25vw, 260px));
+    filter: drop-shadow(0 0 var(--quantiphi-glow-spread, 15px) rgba(255, 255, 255, 0.4));
+    margin-bottom: var(--quantiphi-margin-bottom, 5px);
+    transition: all 0.4s ease;
+}
+
+.quantiphiLogo:hover {
+    filter: drop-shadow(0 0 calc(var(--quantiphi-glow-spread, 15px) * 2) rgba(255, 255, 255, 0.8));
+    transform: scale(1.05);
+}
+
+.presentsText {
+    font-size: var(--presents-font-size, 1.2rem);
+    letter-spacing: var(--presents-letter-spacing, 4px);
+    text-transform: uppercase;
+    color: var(--presents-color, #ffffff);
+    opacity: 0.9;
+    font-weight: 600;
+}
+
 .heroLogo:hover {
     filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1)) drop-shadow(0 0 50px rgba(255, 204, 0, 0.6));
     transform: scale(1.08);
@@ -272,7 +301,7 @@
 /* Tablets and Small Laptops */
 @media (max-width: 1024px) {
     .heroLogo {
-        width: clamp(200px, 30vw, 350px);
+        width: clamp(230px, 34.5vw, 402px);
     }
 
     .heroSubtitle {
@@ -328,7 +357,7 @@
     }
 
     .heroLogo {
-        width: clamp(180px, 40vw, 300px);
+        width: clamp(207px, 46vw, 345px);
     }
 
     .heroSubtitle {
@@ -417,7 +446,7 @@
     }
 
     .heroLogo {
-        width: clamp(120px, 60vw, 220px);
+        width: clamp(138px, 69vw, 253px);
         max-width: 80%;
         /* Ensure no overflow */
     }
@@ -518,7 +547,7 @@
 /* Extra Small Devices */
 @media (max-width: 360px) {
     .heroLogo {
-        width: clamp(120px, 60vw, 200px);
+        width: clamp(138px, 69vw, 230px);
     }
 
     .heroSubtitle {

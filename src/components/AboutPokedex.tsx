@@ -210,7 +210,12 @@ const Pokedex: React.FC<AboutPokedexProps> = ({ type = 'fire' }) => {
           style={isBlue ? { background: '#5bc8e8', boxShadow: 'inset -5px -5px 10px rgba(0,0,0,0.3), 0 10px 25px rgba(91,200,232,0.4)' } : {}}
         >
           <div className={styles.topLights}>
-            <div className={styles.bigBlueLight}>
+            <div 
+              className={styles.bigBlueLight}
+              onClick={() => window.open('https://github.com/Anayshah13', '_blank', 'noopener,noreferrer')}
+              style={{ cursor: 'pointer' }}
+              title="Anay Shah Instagram"
+            >
               <div className={styles.innerReflection} />
             </div>
             <div className={`${styles.smallLight} ${styles.red}`} />

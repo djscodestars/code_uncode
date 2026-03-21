@@ -116,7 +116,9 @@ const Footer: React.FC<FooterProps> = ({ type = 'fire' }) => {
                 <div className={styles.attribution}>
                     Created with <span className={styles.heart}>❤</span> by CodeStars Tech Web
                 </div>
-                <img src="/footer/pikachu.webp" alt="Pikachu" className={styles.pikachu} />
+                <a href="https://www.linkedin.com/in/anay-shah-5880aa264/" target="_blank" rel="noopener noreferrer" style={{ display: 'contents' }}>
+                    <img src="/footer/pikachu.webp" alt="Pikachu" className={styles.pikachu} style={{ cursor: 'pointer' }} />
+                </a>
             </div>
         </footer>
     );
