@@ -157,7 +157,7 @@ export default function Parallax({ type }: ParallaxProps) {
             <img className={styles.heroLogo} src={`/${images.folder}/${images.logo}`} alt="Logo" />
             <h2 className={styles.heroSubtitle}>India&apos;s Premier ICPC-Style Competition</h2>
             <p className={styles.heroDescription}>
-              With 1,600+ participants from 370+ institutes in 2025, Code UnCode 2026 is going even bigger!
+              With 1,600+ participants from 370+ institutes in 2025, Code UnCode 2026 is going Intercity!
               Regional qualifiers across multiple colleges will lead to an electrifying grand finale in Mumbai.
             </p>
           </div>
